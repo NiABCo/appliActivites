@@ -3,16 +3,42 @@ package com.aelion.appliActivite.persistances.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column
 	private String name;
+	@Column
 	private String firstName;
+	@Column
 	private LocalDate birthDate;
+	@Column
 	private String nickname;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobbie> hobbies;
+	@Column
 	private String description;
+	@Column
 	private String password;
+	@Column
+	private String photo;
+	
 	public Long getId() {
 		return id;
 	}
@@ -60,7 +86,14 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}	
+	public String getPhoto() {
+		return photo;
 	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", firstName=" + firstName + ", birthDate=" + birthDate

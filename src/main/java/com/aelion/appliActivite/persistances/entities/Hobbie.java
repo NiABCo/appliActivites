@@ -1,9 +1,15 @@
 package com.aelion.appliActivite.persistances.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "hobbie")
 public class Hobbie {
 	
 	private Long id;
 	private String label;
+	
 	public Long getId() {
 		return id;
 	}
