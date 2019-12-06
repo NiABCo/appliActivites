@@ -2,14 +2,28 @@ package com.aelion.appliActivite.persistances.enteties;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Message {
 
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column
 	private String title;
 	
+	@Column
 	private String body;
 	
+	@Column
 	private LocalDateTime sendTime;
 	
+	@Column
 	private String status;
 
 	public String getTitle() {
