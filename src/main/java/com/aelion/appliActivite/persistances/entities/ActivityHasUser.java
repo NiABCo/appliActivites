@@ -18,7 +18,7 @@ public class ActivityHasUser {
 	private Long id;
 	
 	@ManyToOne (cascade = CascadeType.ALL )
-	@JoinColumn (name = "user", referencedColumnName = "id")
+	@JoinColumn (name = "id_user", referencedColumnName = "id")
 	 private User user;
 	
 	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
