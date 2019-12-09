@@ -48,7 +48,6 @@ public class User implements Serializable{
 
 
 	@Column(name="description", nullable = false)
-
 	private String description;
 	
 	@Column(name="password", nullable = false)
@@ -57,7 +56,7 @@ public class User implements Serializable{
 	@Column(name = "photo", nullable = true)
 	private String photo;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
 	private List<Message> sendMsg;
 	
