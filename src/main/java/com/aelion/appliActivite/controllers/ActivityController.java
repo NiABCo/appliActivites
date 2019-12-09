@@ -1,6 +1,7 @@
 package com.aelion.appliActivite.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aelion.appliActivite.config.Converter;
+import com.aelion.appliActivite.dto.ActivityFullDTO;
+import com.aelion.appliActivite.dto.ActivityLightDTO;
 import com.aelion.appliActivite.persistances.entities.Activity;
-
 import com.aelion.appliActivite.services.impl.ActivityService;
 
 @RestController
@@ -23,15 +26,18 @@ public class ActivityController {
 
 	@Autowired
 	ActivityService activityService;
+	
+	@Autowired
+	Converter modelMap;
 
 	@GetMapping("/list")
-	public List<Activity> getAllActivities() {
-		return activityService.findAll();
+	public List<ActivityLightDTO> getAllActivities() {
+		return activityService.findAll().stream().map(activity -> modelMap.initMapper().map(activity, ActivityLightDTO.class)).collect(Collectors.toList());
 	}
 
 	@GetMapping("/{id}")
-	public Activity getActivityById(@PathVariable(name = "id") Long id) {
-		return this.activityService.findOne(id);
+	public ActivityFullDTO getActivityById(@PathVariable(name = "id") Long id) {
+		return modelMap.initMapper().map(this.activityService.findOne(id), ActivityFullDTO.class);
 	}
 
 	@PostMapping()
