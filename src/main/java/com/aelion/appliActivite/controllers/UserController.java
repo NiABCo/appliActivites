@@ -19,6 +19,7 @@ import com.aelion.appliActivite.config.Converter;
 import com.aelion.appliActivite.dto.UserFullDTO;
 import com.aelion.appliActivite.dto.UserLightDTO;
 import com.aelion.appliActivite.persistances.entities.User;
+import com.aelion.appliActivite.services.IUserService;
 import com.aelion.appliActivite.services.impl.UserService;
 
 
@@ -27,7 +28,7 @@ import com.aelion.appliActivite.services.impl.UserService;
 public class UserController {
 
 	@Autowired 
-	UserService userService;
+	IUserService userService;
 	
 	@Autowired
 	Converter modelMap;
