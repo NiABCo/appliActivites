@@ -32,7 +32,7 @@ public class User {
 	private String nickname;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_hobbie", nullable = false)
-	private List<Hobbie> hobbies;
+	private List<Hobby> hobbies;
 	@Column
 	private String description;
 	@Column
@@ -70,10 +70,10 @@ public class User {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public List<Hobbie> getHobbies() {
+	public List<Hobby> getHobbies() {
 		return hobbies;
 	}
-	public void setHobbies(List<Hobbie> hobbies) {
+	public void setHobbies(List<Hobby> hobbies) {
 		this.hobbies = hobbies;
 	}
 	public String getDescription() {
