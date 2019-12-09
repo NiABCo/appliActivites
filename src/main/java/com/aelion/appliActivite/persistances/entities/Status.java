@@ -12,21 +12,72 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "status")
-public class Status implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Status implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column
+
+
+	@Column(name="date", nullable =false)
 	private LocalDateTime date;
-	
-	@Column
+
+	@Column(name="reason", nullable = true)
 	private String reasonWhy;
+	
+	/****************************************
+	******* CONSTRUCTORS *******************
+	***************************************/
+	
+	public Status() {
+		
+	}
+
+	public Status(Long id, LocalDateTime date, String reasonWhy) {
+		super();
+		this.id = id;
+		this.date = date;
+		this.reasonWhy = reasonWhy;
+	}
+
+
+	
+	
+	/***************************************************
+	************* GETTERS / SETTERS *******************
+	*****************************************************/
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+
+	public String getReasonWhy() {
+		return reasonWhy;
+	}
+
+	public void setReasonWhy(String reasonWhy) {
+		this.reasonWhy = reasonWhy;
+	}
+
+	
+	/******************************************
+	************* METHODS *******************
+	******************************************/
+	@Override
+	public String toString() {
+		return "Status [id=" + id + ", date=" + date + ", reasonWhy=" + reasonWhy + "]";
+	}
 
 }

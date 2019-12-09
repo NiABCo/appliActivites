@@ -13,17 +13,33 @@ import javax.persistence.Table;
 @Table(name="hobbies")
 public class Hobby implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(name="label", nullable = false)
 	private String label;
+	
+	
+	/****************************************
+	******* CONSTRUCTORS *******************
+	***************************************/
+	
+	public Hobby() {
+		
+	};
+	
+	public Hobby(Long id, String label) {
+		this.id = id;
+		this.label = label;
+	}
+
+	
+	/***************************************************
+	************* GETTERS / SETTERS *******************
+	*****************************************************/
 
 	public Long getId() {
 		return id;
@@ -41,10 +57,16 @@ public class Hobby implements Serializable {
 		this.label = label;
 	}
 
+
+	/******************************************
+	************* METHODS *******************
+	******************************************/
+
 	@Override
 	public String toString() {
 		return "Hobby [id=" + id + ", label=" + label + "]";
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -70,6 +92,7 @@ public class Hobby implements Serializable {
 			return false;
 		return true;
 	}
+
 	
 	
 }

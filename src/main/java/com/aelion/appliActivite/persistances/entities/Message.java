@@ -10,37 +10,50 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="messages")
+@Table(name = "messages")
+
 public class Message implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+  
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column
-	private String title;
-	
-	@Column
-	private String body;
-	
-	@Column
-	private LocalDateTime sendTime;
-	
-	@Column
-	private String status;
-	
-	
-	
 
+	@Column(name = "title", nullable = true)
+	private String title;
+
+	@Column(name = "body", nullable = false)
+	private String body;
+
+	@Column(name = "send_time", nullable = false)
+	private LocalDateTime sendTime;
+
+	@Column(name = "status", nullable = false)
+	private String status;
+
+
+	/****************************************
+	 ******* CONSTRUCTORS *******************
+	 ***************************************/
+
+	public Message() {
+
+	};
+
+	public Message(Long id, String title, String body, String status) {
+		this.id = id;
+		this.title = title;
+		this.body = body;
+		this.status = status;
+	}
+
+	/***************************************************
+	 ************* GETTERS / SETTERS *******************
+	 *****************************************************/
 	public String getTitle() {
 		return title;
 	}
@@ -73,10 +86,13 @@ public class Message implements Serializable{
 		this.status = status;
 	}
 
+	/******************************************
+	 ************* METHODS *******************
+	 ******************************************/
+
 	@Override
 	public String toString() {
 		return "Message [title=" + title + ", body=" + body + ", sendTime=" + sendTime + ", status=" + status + "]";
 	}
-	
-	
+
 }
