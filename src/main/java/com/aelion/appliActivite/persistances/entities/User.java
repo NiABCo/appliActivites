@@ -22,21 +22,29 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column
 	private String name;
+	
 	@Column
 	private String firstName;
+	
 	@Column
 	private LocalDate birthDate;
+	
 	@Column
 	private String nickname;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_hobbie", nullable = false)
-	private List<Hobbie> hobbies;
+	private List<Hobby> hobbies;
+	
 	@Column
 	private String description;
+	
 	@Column
 	private String password;
+	
 	@Column
 	private String photo;
 	
@@ -70,10 +78,10 @@ public class User {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public List<Hobbie> getHobbies() {
+	public List<Hobby> getHobbies() {
 		return hobbies;
 	}
-	public void setHobbies(List<Hobbie> hobbies) {
+	public void setHobbies(List<Hobby> hobbies) {
 		this.hobbies = hobbies;
 	}
 	public String getDescription() {

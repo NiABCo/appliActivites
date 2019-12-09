@@ -2,13 +2,17 @@ package com.aelion.appliActivite.persistances.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -49,6 +53,10 @@ public class Activity implements Serializable {
 	
 	@Column(name="status", nullable=true)
 	private String status;
+	
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn (name = "id_user", nullable = false)
+	private List<ActivityHasUser> actHasUser;
 
 	
 	/****************************************

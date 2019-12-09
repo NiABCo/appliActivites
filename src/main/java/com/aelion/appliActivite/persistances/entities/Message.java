@@ -1,9 +1,8 @@
-package com.aelion.appliActivite.persistances.enteties;
+package com.aelion.appliActivite.persistances.entities;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.ColumnResult;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
