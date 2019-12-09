@@ -52,6 +52,14 @@ public class User implements Serializable{
 	@Column(name = "photo", nullable = true)
 	private String photo;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_sender", nullable = false)
+	private List<Message> sendMsg;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_receiver", nullable = false)
+	private List<Message> receivedMsg;
+	
 
 
 	/****************************************
@@ -79,14 +87,6 @@ public class User implements Serializable{
 	/***************************************************
 	************* GETTERS / SETTERS *******************
 	*****************************************************/
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "id_sender", nullable = false)
-	private List<Message> sendMsg;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "id_receiver", nullable = false)
-	private List<Message> receivedMsg;
 
 	
 	public Long getId() {
