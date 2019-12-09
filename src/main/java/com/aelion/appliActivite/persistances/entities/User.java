@@ -30,8 +30,7 @@ public class User implements Serializable{
 	
 	@Column(name="firstname", nullable = false)
 	private String firstname;
-	
-	
+
 	@Column(name="birth_date", nullable = false)
 	private LocalDate birthDate;
 	
@@ -44,7 +43,6 @@ public class User implements Serializable{
 
 
 	@Column(name="description", nullable = false)
-
 	private String description;
 	
 	@Column(name="password", nullable = false)
@@ -52,6 +50,19 @@ public class User implements Serializable{
 	
 	@Column(name = "photo", nullable = true)
 	private String photo;
+
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_sender", nullable = false)
+	private List<Message> sendMsg;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_receiver", nullable = false)
+	private List<Message> receivedMsg;
+	
+
+	
+
 
 
 	/****************************************
@@ -77,15 +88,6 @@ public class User implements Serializable{
 		this.photo = photo;
 	}
 
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "id_sender", nullable = false)
-	private List<Message> sendMsg;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "id_receiver", nullable = false)
-	private List<Message> receivedMsg;
-	
 
 
 	
