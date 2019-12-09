@@ -8,6 +8,8 @@ import com.aelion.appliActivite.persistances.repositories.IUserRepository;
 import com.aelion.appliActivite.services.IUserService;
 import com.aelion.appliActivite.services.common.AbstractService;
 
+@Service
+@Transactional
 public class UserService extends AbstractService<User, Long> implements IUserService{
 
 	
