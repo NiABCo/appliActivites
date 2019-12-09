@@ -9,7 +9,8 @@ import com.aelion.appliActivite.services.common.AbstractService;
 import com.aelion.appliActivite.persistances.repositories.IHobbyRepository;
 import com.aelion.appliActivite.services.IHobbyService;
 
-
+@Service
+@Transactional
 public class HobbyService extends AbstractService<Hobby, Long> implements IHobbyService{
 
 	@Autowired
