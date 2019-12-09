@@ -46,11 +46,6 @@ public class UserController {
 		return  userService.deleteById(id);
 	}
 	
-	@DeleteMapping("/{id}")
-	public boolean deleteUserByObject(@PathVariable(name = "id") Long id) {
-		User user = userService.findOne(id);
-		return userService.deleteByObject(user);
-	}
 	
 	@PostMapping()
 	public User saveUser(@Valid @RequestBody User user) {
