@@ -1,4 +1,4 @@
-package com.aelion.appliActivite.repositories;
+package com.aelion.appliActivite.persistances.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.aelion.appliActivite.persistances.entities.services.common;
+package com.aelion.appliActivite.services.common;
 
 import java.io.Serializable;
 import java.util.List;
