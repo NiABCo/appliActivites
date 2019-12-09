@@ -4,16 +4,29 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+
+import javax.persistence.ColumnResult;
+import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
+
+<<<<<<< HEAD
 public class Message implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+=======
+@Entity
+@Table(name="messages")
+public class Message {
+>>>>>>> aba1bfb0a02ddaca0e7d8749925d9db983c7f086
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
