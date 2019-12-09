@@ -1,7 +1,6 @@
 package com.aelion.appliActivite.controllers;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -19,7 +18,7 @@ import com.aelion.appliActivite.config.Converter;
 import com.aelion.appliActivite.dto.UserFullDTO;
 import com.aelion.appliActivite.dto.UserLightDTO;
 import com.aelion.appliActivite.persistances.entities.User;
-import com.aelion.appliActivite.services.impl.UserService;
+import com.aelion.appliActivite.services.IUserService;
 
 
 @RestController
@@ -27,7 +26,7 @@ import com.aelion.appliActivite.services.impl.UserService;
 public class UserController {
 
 	@Autowired 
-	UserService userService;
+	IUserService userService;
 	
 	@Autowired
 	Converter modelMap;

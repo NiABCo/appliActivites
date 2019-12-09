@@ -18,14 +18,14 @@ import com.aelion.appliActivite.config.Converter;
 import com.aelion.appliActivite.dto.ActivityFullDTO;
 import com.aelion.appliActivite.dto.ActivityLightDTO;
 import com.aelion.appliActivite.persistances.entities.Activity;
-import com.aelion.appliActivite.services.impl.ActivityService;
+import com.aelion.appliActivite.services.IActivityService;
 
 @RestController
 @RequestMapping(path = "/activity")
 public class ActivityController {
 
 	@Autowired
-	ActivityService activityService;
+	IActivityService activityService;
 	
 	@Autowired
 	Converter modelMap;
