@@ -23,30 +23,57 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
-	private String name;
+	@Column(name="lastname",nullable = false)
+	private String lastname;
 	
-	@Column
+	@Column(name="firstname", nullable = false)
 	private String firstName;
 	
-	@Column
+	@Column(name="birth_date", nullable = false)
 	private LocalDate birthDate;
 	
-	@Column
+	@Column(name="nickname", nullable = true)
 	private String nickname;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobby> hobbies;
 
-	@Column
+	@Column(name="description", nullable = false)
 	private String description;
 	
-	@Column
+	@Column(name="password", nullable = false)
 	private String password;
 	
-	@Column
+	@Column(name = "photo", nullable = true)
 	private String photo;
+	
+
+	/****************************************
+	******* CONSTRUCTORS *******************
+	***************************************/
+	
+	public User() {
+		
+	}
+	
+	public User(Long id, String lastname, String firstName, LocalDate birthDate, String nickname, List<Hobby> hobbies,
+			String description, String password, String photo) {
+		super();
+		this.id = id;
+		this.lastname = lastname;
+		this.firstName = firstName;
+		this.birthDate = birthDate;
+		this.nickname = nickname;
+		this.hobbies = hobbies;
+		this.description = description;
+		this.password = password;
+		this.photo = photo;
+	}
+
+	/***************************************************
+	************* GETTERS / SETTERS *******************
+	*****************************************************/
 	
 	public Long getId() {
 		return id;
@@ -55,10 +82,10 @@ public class User {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		return this.lastname;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.lastname = name;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -103,9 +130,17 @@ public class User {
 		this.photo = photo;
 	}
 	
+	
+	
+	
+	
+	/******************************************
+	************* METHODS *******************
+	******************************************/
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", firstName=" + firstName + ", birthDate=" + birthDate
+		return "User [id=" + id + ", name=" + lastname + ", firstName=" + firstName + ", birthDate=" + birthDate
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", description=" + description + ", password="
 				+ password + "]";
 	}
