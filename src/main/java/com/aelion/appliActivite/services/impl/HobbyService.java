@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.aelion.appliActivite.persistances.entities.Hobby;
-import com.aelion.appliActivite.persistances.entities.services.common.AbstractService;
-import com.aelion.appliActivite.repositories.IHobbyRepository;
+import com.aelion.appliActivite.persistances.repositories.IHobbyRepository;
 import com.aelion.appliActivite.services.IHobbyService;
+import com.aelion.appliActivite.services.common.AbstractService;
 
 
 public class HobbyService extends AbstractService<Hobby, Long> implements IHobbyService{
