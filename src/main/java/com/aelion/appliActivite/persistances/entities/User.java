@@ -85,15 +85,6 @@ public class User implements Serializable{
 	}
 
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "id_sender", nullable = false)
-	private List<Message> sendMsg;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "id_receiver", nullable = false)
-	private List<Message> receivedMsg;
-	
-
 
 	
 	/***************************************************
