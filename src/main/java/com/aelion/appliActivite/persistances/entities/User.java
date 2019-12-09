@@ -23,16 +23,16 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(name = "name")
 	private String name;
 	
-	@Column
+	@Column(name = "firstname")
 	private String firstName;
 	
-	@Column
+	@Column(name = "birthdate")
 	private LocalDate birthDate;
 	
-	@Column
+	@Column(name = "nickname")
 	private String nickname;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -48,9 +48,41 @@ public class User {
 	@Column
 	private String photo;
 	
+	
+	
+	/*
+	 * ****************
+	 * constructors
+	 * ****************
+	 */
+	public User() {}
+	public User(Long id, String name, String firstName, LocalDate birthDate, String nickname, List<Hobby> hobbies,
+			String description, String password, String photo) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.firstName = firstName;
+		this.birthDate = birthDate;
+		this.nickname = nickname;
+		this.hobbies = hobbies;
+		this.description = description;
+		this.password = password;
+		this.photo = photo;
+	}
+	
+	
+	
+	/*
+	 * ****************
+	 * getters & setters
+	 * ****************
+	 */
+	
+	
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}

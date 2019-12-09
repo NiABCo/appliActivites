@@ -3,14 +3,10 @@ package com.aelion.appliActivite.persistances.entities;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-
-import javax.persistence.ColumnResult;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 
@@ -22,17 +18,41 @@ public class Message {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(name = "title")
 	private String title;
 	
-	@Column
+	@Column(name = "name")
 	private String body;
 	
-	@Column
+	@Column(name = "send_time")
 	private LocalDateTime sendTime;
 	
-	@Column
+	@Column(name = "status")
 	private String status;
+	
+	/*
+	 * ********************
+	 * Constructors
+	 * ********************
+	 */
+	
+	public Message() {}
+	public Message(Long id, String title, String body, LocalDateTime sendTime, String status) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.body = body;
+		this.sendTime = sendTime;
+		this.status = status;
+	}
+	
+	
+	/*
+	 * ********************
+	 * getters & setters
+	 * ********************
+	 */
+	
 	
 	
 
