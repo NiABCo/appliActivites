@@ -21,6 +21,11 @@ import javax.persistence.Table;
 public class User implements Serializable{
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -52,6 +57,14 @@ public class User implements Serializable{
 	@Column(name = "photo", nullable = true)
 	private String photo;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_sender", nullable = false)
+	private List<Message> sendMsg;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_receiver", nullable = false)
+	private List<Message> receivedMsg;
+	
 
 
 	/****************************************
@@ -79,14 +92,6 @@ public class User implements Serializable{
 	/***************************************************
 	************* GETTERS / SETTERS *******************
 	*****************************************************/
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "id_sender", nullable = false)
-	private List<Message> sendMsg;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "id_receiver", nullable = false)
-	private List<Message> receivedMsg;
 
 	
 	public Long getId() {
@@ -144,10 +149,30 @@ public class User implements Serializable{
 		this.photo = photo;
 	}
 	
-	
-	
-	
-	
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public List<Message> getSendMsg() {
+		return sendMsg;
+	}
+
+	public void setSendMsg(List<Message> sendMsg) {
+		this.sendMsg = sendMsg;
+	}
+
+	public List<Message> getReceivedMsg() {
+		return receivedMsg;
+	}
+
+	public void setReceivedMsg(List<Message> receivedMsg) {
+		this.receivedMsg = receivedMsg;
+	}
+
 	/******************************************
 	************* METHODS *******************
 	******************************************/
