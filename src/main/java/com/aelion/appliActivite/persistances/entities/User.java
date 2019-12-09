@@ -1,5 +1,6 @@
 package com.aelion.appliActivite.persistances.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,8 +18,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -39,7 +41,9 @@ public class User {
 	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobby> hobbies;
 
+
 	@Column(name="description", nullable = false)
+
 	private String description;
 	
 	@Column(name="password", nullable = false)
@@ -48,6 +52,7 @@ public class User {
 	@Column(name = "photo", nullable = true)
 	private String photo;
 	
+
 
 	/****************************************
 	******* CONSTRUCTORS *******************
@@ -74,6 +79,15 @@ public class User {
 	/***************************************************
 	************* GETTERS / SETTERS *******************
 	*****************************************************/
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_sender", nullable = false)
+	private List<Message> sendMsg;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_receiver", nullable = false)
+	private List<Message> receivedMsg;
+
 	
 	public Long getId() {
 		return id;

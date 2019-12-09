@@ -1,20 +1,24 @@
 package com.aelion.appliActivite.persistances.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "messages")
-public class Message {
 
+public class Message implements Serializable{
+  
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,6 +34,7 @@ public class Message {
 
 	@Column(name = "status", nullable = false)
 	private String status;
+
 
 	/****************************************
 	 ******* CONSTRUCTORS *******************

@@ -12,13 +12,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "status")
+
 public class Status implements Serializable {
-	
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 
 	@Column(name="date", nullable =false)
 	private LocalDateTime date;
@@ -79,4 +79,5 @@ public class Status implements Serializable {
 	public String toString() {
 		return "Status [id=" + id + ", date=" + date + ", reasonWhy=" + reasonWhy + "]";
 	}
+
 }
