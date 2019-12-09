@@ -3,8 +3,6 @@ package com.aelion.appliActivite.persistances.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,22 +18,20 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User implements Serializable{
 	
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+
 	@Column(name="lastname",nullable = false)
 	private String lastname;
 	
 	@Column(name="firstname", nullable = false)
-	private String firstName;
-	
+	private String firstname;
+
+
 	@Column(name="birth_date", nullable = false)
 	private LocalDate birthDate;
 	
@@ -48,7 +44,6 @@ public class User implements Serializable{
 
 
 	@Column(name="description", nullable = false)
-
 	private String description;
 	
 	@Column(name="password", nullable = false)
@@ -56,8 +51,8 @@ public class User implements Serializable{
 	
 	@Column(name = "photo", nullable = true)
 	private String photo;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+
+	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
 	private List<Message> sendMsg;
 	
@@ -80,7 +75,7 @@ public class User implements Serializable{
 		super();
 		this.id = id;
 		this.lastname = lastname;
-		this.firstName = firstName;
+		this.firstname = firstName;
 		this.birthDate = birthDate;
 		this.nickname = nickname;
 		this.hobbies = hobbies;
@@ -89,6 +84,9 @@ public class User implements Serializable{
 		this.photo = photo;
 	}
 
+
+
+	
 	/***************************************************
 	************* GETTERS / SETTERS *******************
 	*****************************************************/
@@ -97,6 +95,7 @@ public class User implements Serializable{
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -107,10 +106,10 @@ public class User implements Serializable{
 		this.lastname = name;
 	}
 	public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.firstname = firstName;
 	}
 	public LocalDate getBirthDate() {
 		return birthDate;
@@ -148,7 +147,7 @@ public class User implements Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
+
 	public String getLastname() {
 		return lastname;
 	}
@@ -179,7 +178,7 @@ public class User implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + lastname + ", firstName=" + firstName + ", birthDate=" + birthDate
+		return "User [id=" + id + ", name=" + lastname + ", firstName=" + firstname + ", birthDate=" + birthDate
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", description=" + description + ", password="
 				+ password + "]";
 	}
