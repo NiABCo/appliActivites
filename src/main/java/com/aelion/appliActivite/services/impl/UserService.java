@@ -2,6 +2,8 @@ package com.aelion.appliActivite.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aelion.appliActivite.persistances.entities.User;
 import com.aelion.appliActivite.persistances.repositories.IUserRepository;
