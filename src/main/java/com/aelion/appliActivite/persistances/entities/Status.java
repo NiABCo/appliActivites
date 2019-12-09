@@ -1,6 +1,7 @@
 package com.aelion.appliActivite.persistances.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,37 +11,42 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="hobbies")
-public class Hobby implements Serializable {
+@Table(name = "status")
 
-	private static final long serialVersionUID = 1L;
-
+public class Status implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name="label", nullable = false)
-	private String label;
-	
+
+
+	@Column(name="date", nullable =false)
+	private LocalDateTime date;
+
+	@Column(name="reason", nullable = true)
+	private String reasonWhy;
 	
 	/****************************************
 	******* CONSTRUCTORS *******************
 	***************************************/
 	
-	public Hobby() {
+	public Status() {
 		
-	};
-	
-	public Hobby(Long id, String label) {
-		this.id = id;
-		this.label = label;
 	}
 
+	public Status(Long id, LocalDateTime date, String reasonWhy) {
+		super();
+		this.id = id;
+		this.date = date;
+		this.reasonWhy = reasonWhy;
+	}
+
+
+	
 	
 	/***************************************************
 	************* GETTERS / SETTERS *******************
 	*****************************************************/
-
 	public Long getId() {
 		return id;
 	}
@@ -49,50 +55,29 @@ public class Hobby implements Serializable {
 		this.id = id;
 	}
 
-	public String getLabel() {
-		return label;
+	public LocalDateTime getDate() {
+		return date;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 
+	public String getReasonWhy() {
+		return reasonWhy;
+	}
 
+	public void setReasonWhy(String reasonWhy) {
+		this.reasonWhy = reasonWhy;
+	}
+
+	
 	/******************************************
 	************* METHODS *******************
 	******************************************/
-
 	@Override
 	public String toString() {
-		return "Hobby [id=" + id + ", label=" + label + "]";
+		return "Status [id=" + id + ", date=" + date + ", reasonWhy=" + reasonWhy + "]";
 	}
 
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Hobby other = (Hobby) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	
-	
 }

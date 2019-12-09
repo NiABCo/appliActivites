@@ -2,13 +2,17 @@ package com.aelion.appliActivite.persistances.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -16,6 +20,11 @@ import javax.persistence.Table;
 @Table(name="activities")
 public class Activity implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -49,6 +58,15 @@ public class Activity implements Serializable {
 	
 	@Column(name="status", nullable=true)
 	private String status;
+	
+
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn (name = "id_user", nullable = false)
+	private List<ActivityHasUser> actHasUser;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_activityMsg", nullable = false)
+	private List<Message> activityMessage;
 
 	
 	/****************************************
@@ -183,6 +201,93 @@ public class Activity implements Serializable {
 				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
 				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
 				+ status + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((actHasUser == null) ? 0 : actHasUser.hashCode());
+		result = prime * result + ((beginningDate == null) ? 0 : beginningDate.hashCode());
+		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((endingDate == null) ? 0 : endingDate.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (isAgeRestricted ? 1231 : 1237);
+		result = prime * result + ((label == null) ? 0 : label.hashCode());
+		result = prime * result + maxNumber;
+		result = prime * result + ((place == null) ? 0 : place.hashCode());
+		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Activity other = (Activity) obj;
+		if (actHasUser == null) {
+			if (other.actHasUser != null)
+				return false;
+		} else if (!actHasUser.equals(other.actHasUser))
+			return false;
+		if (beginningDate == null) {
+			if (other.beginningDate != null)
+				return false;
+		} else if (!beginningDate.equals(other.beginningDate))
+			return false;
+		if (creationDate == null) {
+			if (other.creationDate != null)
+				return false;
+		} else if (!creationDate.equals(other.creationDate))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (endingDate == null) {
+			if (other.endingDate != null)
+				return false;
+		} else if (!endingDate.equals(other.endingDate))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (isAgeRestricted != other.isAgeRestricted)
+			return false;
+		if (label == null) {
+			if (other.label != null)
+				return false;
+		} else if (!label.equals(other.label))
+			return false;
+		if (maxNumber != other.maxNumber)
+			return false;
+		if (place == null) {
+			if (other.place != null)
+				return false;
+		} else if (!place.equals(other.place))
+			return false;
+		if (price == null) {
+			if (other.price != null)
+				return false;
+		} else if (!price.equals(other.price))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		return true;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.aelion.appliActivite.persistances.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,51 +18,59 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name")
-	private String name;
+
+
+	@Column(name="lastname",nullable = false)
+	private String lastname;
 	
-	@Column(name = "firstname")
-	private String firstName;
+	@Column(name="firstname", nullable = false)
+	private String firstname;
 	
-	@Column(name = "birthdate")
+	@Column(name="birth_date", nullable = false)
 	private LocalDate birthDate;
 	
-	@Column(name = "nickname")
+	@Column(name="nickname", nullable = true)
+
 	private String nickname;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobby> hobbies;
 
-	@Column
+
+	@Column(name="description", nullable = false)
+
 	private String description;
 	
-	@Column
+	@Column(name="password", nullable = false)
 	private String password;
 	
-	@Column
+	@Column(name = "photo", nullable = true)
 	private String photo;
+
+
+	/****************************************
+	******* CONSTRUCTORS *******************
+	***************************************/
 	
+	public User() {
+		
+	}
 	
-	
-	/*
-	 * ****************
-	 * constructors
-	 * ****************
-	 */
-	public User() {}
-	public User(Long id, String name, String firstName, LocalDate birthDate, String nickname, List<Hobby> hobbies,
+	public User(Long id, String lastname, String firstName, LocalDate birthDate, String nickname, List<Hobby> hobbies,
 			String description, String password, String photo) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.firstName = firstName;
+		this.lastname = lastname;
+
+		this.firstname = firstName;
 		this.birthDate = birthDate;
 		this.nickname = nickname;
 		this.hobbies = hobbies;
@@ -69,15 +78,22 @@ public class User {
 		this.password = password;
 		this.photo = photo;
 	}
+
+
+
+	/***************************************************
+	************* GETTERS / SETTERS *******************
+	*****************************************************/
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_sender", nullable = false)
+	private List<Message> sendMsg;
 	
-	
-	
-	/*
-	 * ****************
-	 * getters & setters
-	 * ****************
-	 */
-	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_receiver", nullable = false)
+	private List<Message> receivedMsg;
+
+
 	
 	public Long getId() {
 		return id;
@@ -87,16 +103,16 @@ public class User {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		return this.lastname;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.lastname = name;
 	}
 	public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.firstname = firstName;
 	}
 	public LocalDate getBirthDate() {
 		return birthDate;
@@ -135,9 +151,17 @@ public class User {
 		this.photo = photo;
 	}
 	
+	
+	
+	
+	
+	/******************************************
+	************* METHODS *******************
+	******************************************/
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", firstName=" + firstName + ", birthDate=" + birthDate
+		return "User [id=" + id + ", name=" + lastname + ", firstName=" + firstname + ", birthDate=" + birthDate
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", description=" + description + ", password="
 				+ password + "]";
 	}
