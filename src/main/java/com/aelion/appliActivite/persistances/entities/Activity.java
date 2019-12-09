@@ -74,6 +74,7 @@ public class Activity implements Serializable {
 	***************************************/
 	
 	
+	@SuppressWarnings("unused")
 	private Activity() {
 		
 	};

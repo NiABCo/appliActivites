@@ -13,6 +13,9 @@ import javax.persistence.Table;
 @Table(name="hobbies")
 public class Hobby implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
