@@ -22,21 +22,29 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column
 	private String name;
+	
 	@Column
 	private String firstName;
+	
 	@Column
 	private LocalDate birthDate;
+	
 	@Column
 	private String nickname;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobby> hobbies;
+
 	@Column
 	private String description;
+	
 	@Column
 	private String password;
+	
 	@Column
 	private String photo;
 	
