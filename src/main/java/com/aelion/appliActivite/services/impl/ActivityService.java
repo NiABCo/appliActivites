@@ -8,6 +8,8 @@ import com.aelion.appliActivite.persistances.repositories.IActivityRepository;
 import com.aelion.appliActivite.services.IActivityService;
 import com.aelion.appliActivite.services.common.AbstractService;
 
+@Service
+@Transactional
 public class ActivityService extends AbstractService<Activity, Long> implements IActivityService {
 
 
