@@ -91,6 +91,5 @@ public class ActivityHasUser {
 		return true;
 	}
 	
-	
  
 }
