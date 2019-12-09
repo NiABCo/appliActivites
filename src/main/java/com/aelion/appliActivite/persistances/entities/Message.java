@@ -1,5 +1,6 @@
 package com.aelion.appliActivite.persistances.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -14,7 +15,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="messages")
-public class Message {
+public class Message implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
