@@ -39,6 +39,7 @@ public class Message implements Serializable{
 	private String status;
 	
 	
+	
 
 	public String getTitle() {
 		return title;

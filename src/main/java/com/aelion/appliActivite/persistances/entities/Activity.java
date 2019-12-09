@@ -59,9 +59,14 @@ public class Activity implements Serializable {
 	@Column(name="status", nullable=true)
 	private String status;
 	
+
 	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn (name = "id_user", nullable = false)
 	private List<ActivityHasUser> actHasUser;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_activityMsg", nullable = false)
+	private List<Message> activityMessage;
 
 	
 	/****************************************
