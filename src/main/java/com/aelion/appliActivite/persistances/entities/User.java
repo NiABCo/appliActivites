@@ -3,8 +3,6 @@ package com.aelion.appliActivite.persistances.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,21 +18,19 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User implements Serializable{
 	
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+
 	@Column(name="lastname",nullable = false)
 	private String lastname;
 	
 	@Column(name="firstname", nullable = false)
 	private String firstname;
+
 	
 	@Column(name="birth_date", nullable = false)
 	private LocalDate birthDate;
@@ -88,6 +84,18 @@ public class User implements Serializable{
 		this.photo = photo;
 	}
 
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_sender", nullable = false)
+	private List<Message> sendMsg;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "id_receiver", nullable = false)
+	private List<Message> receivedMsg;
+	
+
+
+	
 	/***************************************************
 	************* GETTERS / SETTERS *******************
 	*****************************************************/
@@ -96,6 +104,7 @@ public class User implements Serializable{
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -147,7 +156,7 @@ public class User implements Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
+
 	public String getLastname() {
 		return lastname;
 	}
