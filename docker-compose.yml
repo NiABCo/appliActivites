@@ -1,0 +1,16 @@
+version : '3'
+services :
+  mysql-dev:
+    image: mysql:5
+    volumes:
+      - ./datas
+    ports: 
+      - 3304:3306
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: appliactivities
+  admin:
+    image: adminer
+    ports:
+      - 8085:8080
