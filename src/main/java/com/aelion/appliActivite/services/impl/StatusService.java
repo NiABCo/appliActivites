@@ -8,6 +8,8 @@ import com.aelion.appliActivite.services.common.AbstractService;
 import com.aelion.appliActivite.repositories.IStatusRepository;
 import com.aelion.appliActivite.services.IStatusService;
 
+@Service
+@Transactional
 public class StatusService extends AbstractService<Status, Long> implements IStatusService {
 
 	@Autowired
