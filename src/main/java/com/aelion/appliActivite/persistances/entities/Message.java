@@ -7,42 +7,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "messages")
-
 public class Message implements Serializable{
+  
+	
+	private static final long serialVersionUID = 1L;
   
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	/*
-	 * ********************
-	 * Constructors
-	 * ********************
-	 */
-	
-	public Message() {};
-	
-	public Message(Long id, String title, String body, LocalDateTime sendTime, String status) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.body = body;
-		this.sendTime = sendTime;
-		this.status = status;
-	}
-	
-	
-	/*
-	 * ********************
-	 * getters & setters
-	 * ********************
-	 */
-	
-	
 
 	@Column(name = "title", nullable = true)
 	private String title;
@@ -57,6 +32,21 @@ public class Message implements Serializable{
 	private String status;
 
 
+	/****************************************
+	 ******* CONSTRUCTORS *******************
+	 ***************************************/
+
+	public Message() {};
+	
+	public Message(Long id, String title, String body, LocalDateTime sendTime, String status) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.body = body;
+		this.sendTime = sendTime;
+		this.status = status;
+	}
+	
 
 	/***************************************************
 	 ************* GETTERS / SETTERS *******************

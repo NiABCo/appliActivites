@@ -20,12 +20,13 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-
 
 	@Column(name="lastname",nullable = false)
 	private String lastname;
@@ -33,11 +34,11 @@ public class User implements Serializable{
 	@Column(name="firstname", nullable = false)
 	private String firstname;
 	
+	
 	@Column(name="birth_date", nullable = false)
 	private LocalDate birthDate;
 	
 	@Column(name="nickname", nullable = true)
-
 	private String nickname;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -80,11 +81,6 @@ public class User implements Serializable{
 	}
 
 
-
-	/***************************************************
-	************* GETTERS / SETTERS *******************
-	*****************************************************/
-
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
 	private List<Message> sendMsg;
@@ -92,7 +88,13 @@ public class User implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "id_receiver", nullable = false)
 	private List<Message> receivedMsg;
+	
 
+
+	
+	/***************************************************
+	************* GETTERS / SETTERS *******************
+	*****************************************************/
 
 	
 	public Long getId() {
@@ -150,11 +152,31 @@ public class User implements Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
-	
-	
-	
-	
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public List<Message> getSendMsg() {
+		return sendMsg;
+	}
+
+	public void setSendMsg(List<Message> sendMsg) {
+		this.sendMsg = sendMsg;
+	}
+
+	public List<Message> getReceivedMsg() {
+		return receivedMsg;
+	}
+
+	public void setReceivedMsg(List<Message> receivedMsg) {
+		this.receivedMsg = receivedMsg;
+	}
+
 	/******************************************
 	************* METHODS *******************
 	******************************************/
