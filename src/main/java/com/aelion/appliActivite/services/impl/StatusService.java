@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.aelion.appliActivite.persistances.entities.Status;
-import com.aelion.appliActivite.persistances.entities.services.common.AbstractService;
+import com.aelion.appliActivite.services.common.AbstractService;
 import com.aelion.appliActivite.repositories.IStatusRepository;
 import com.aelion.appliActivite.services.IStatusService;
 
