@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,16 +30,16 @@ public class ActivityController {
 	IActivityService activityService;
 	
 	@Autowired
-	Converter modelMap;
+	ModelMapper mapper;
 
 	@GetMapping("/list")
 	public List<ActivityLightDTO> getAllActivities() {
-		return activityService.findAll().stream().map(activity -> modelMap.initMapper().map(activity, ActivityLightDTO.class)).collect(Collectors.toList());
+		return activityService.findAll().stream().map(activity -> mapper.map(activity, ActivityLightDTO.class)).collect(Collectors.toList());
 	}
 
 	@GetMapping("/{id}")
 	public ActivityFullDTO getActivityById(@PathVariable(name = "id") Long id) {
-		return modelMap.initMapper().map(this.activityService.findOne(id), ActivityFullDTO.class);
+		return mapper.map(this.activityService.findOne(id), ActivityFullDTO.class);
 	}
 
 	@PostMapping()
