@@ -144,10 +144,30 @@ public class User implements Serializable{
 		this.photo = photo;
 	}
 	
-	
-	
-	
-	
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public List<Message> getSendMsg() {
+		return sendMsg;
+	}
+
+	public void setSendMsg(List<Message> sendMsg) {
+		this.sendMsg = sendMsg;
+	}
+
+	public List<Message> getReceivedMsg() {
+		return receivedMsg;
+	}
+
+	public void setReceivedMsg(List<Message> receivedMsg) {
+		this.receivedMsg = receivedMsg;
+	}
+
 	/******************************************
 	************* METHODS *******************
 	******************************************/
