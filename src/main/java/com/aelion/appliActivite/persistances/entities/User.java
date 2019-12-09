@@ -29,7 +29,7 @@ public class User implements Serializable{
 	private String lastname;
 	
 	@Column(name="firstname", nullable = false)
-	private String firstName;
+	private String firstname;
 	
 	@Column(name="birth_date", nullable = false)
 	private LocalDate birthDate;
@@ -67,7 +67,7 @@ public class User implements Serializable{
 		super();
 		this.id = id;
 		this.lastname = lastname;
-		this.firstName = firstName;
+		this.firstname = firstName;
 		this.birthDate = birthDate;
 		this.nickname = nickname;
 		this.hobbies = hobbies;
@@ -102,10 +102,10 @@ public class User implements Serializable{
 		this.lastname = name;
 	}
 	public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.firstname = firstName;
 	}
 	public LocalDate getBirthDate() {
 		return birthDate;
@@ -154,7 +154,7 @@ public class User implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + lastname + ", firstName=" + firstName + ", birthDate=" + birthDate
+		return "User [id=" + id + ", name=" + lastname + ", firstName=" + firstname + ", birthDate=" + birthDate
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", description=" + description + ", password="
 				+ password + "]";
 	}
