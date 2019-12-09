@@ -3,10 +3,21 @@ package com.aelion.appliActivite.persistances.entities;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+
+
+import javax.persistence.ColumnResult;
+import javax.persistence.Entity;
+
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name="messages")
 public class Message {
 
 	@Id
@@ -24,6 +35,8 @@ public class Message {
 	
 	@Column
 	private String status;
+	
+	
 
 	public String getTitle() {
 		return title;
