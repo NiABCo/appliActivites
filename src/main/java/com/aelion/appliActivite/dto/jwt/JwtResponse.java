@@ -2,7 +2,7 @@ package com.aelion.appliActivite.dto.jwt;
 
 import java.io.Serializable;
 
-public class JWTResponse implements Serializable {
+public class JwtResponse implements Serializable {
 
 	
 	/**
@@ -12,12 +12,12 @@ public class JWTResponse implements Serializable {
 	
 	private String token;
 	
-	public JWTResponse() {
+	public JwtResponse() {
 		super();
 	};
 	
 	
-	public JWTResponse(String token) {
+	public JwtResponse(String token) {
 		super();
 		this.token = token;
 	}
