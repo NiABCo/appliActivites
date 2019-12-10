@@ -17,6 +17,7 @@ public class ActivityService extends AbstractService<Activity, Long> implements 
 
 	@Autowired
 	IActivityRepository activityRepo;
+	
 	@Override
 	public JpaRepository<Activity, Long> getRepo() {
 		return activityRepo;

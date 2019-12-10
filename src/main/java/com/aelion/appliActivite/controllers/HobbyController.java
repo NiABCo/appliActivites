@@ -23,7 +23,7 @@ import com.aelion.appliActivite.services.IHobbyService;
 
 
 @RestController
-@RequestMapping(path = "/hobby")
+@RequestMapping(path = "/users/hobby")
 public class HobbyController {
 
 	@Autowired
