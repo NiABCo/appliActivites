@@ -3,7 +3,7 @@ package com.aelion.appliActivite.dto;
 public class UserLightDTO {
 
 	private String lastname;
-	private String mail;
+	private String email;
 	
 	/*******************************
 	 * *******CONSTRUCTORS**********
@@ -11,10 +11,10 @@ public class UserLightDTO {
 	 *******************************/
 	
 	public UserLightDTO() {}
-	public UserLightDTO(String lastname, String mail) {
+	public UserLightDTO(String lastname, String email) {
 		super();
 		this.lastname = lastname;
-		this.mail = mail;
+		this.email = email;
 	}
 	
 	
@@ -31,11 +31,11 @@ public class UserLightDTO {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	public String getMail() {
-		return mail;
+	public String getEmail() {
+		return email;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
@@ -47,7 +47,7 @@ public class UserLightDTO {
 	
 	@Override
 	public String toString() {
-		return "UserLightDTO [lastname=" + lastname + ", mail=" + mail + "]";
+		return "UserLightDTO [lastname=" + lastname + ", email=" + email + "]";
 	}
 	
 	

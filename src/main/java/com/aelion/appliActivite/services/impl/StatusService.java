@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aelion.appliActivite.persistances.entities.Status;
-import com.aelion.appliActivite.services.common.AbstractService;
-import com.aelion.appliActivite.repositories.IStatusRepository;
+
+import com.aelion.appliActivite.persistances.repositories.IStatusRepository;
+
 import com.aelion.appliActivite.services.IStatusService;
+import com.aelion.appliActivite.services.common.AbstractService;
 
 @Service
 @Transactional
