@@ -22,7 +22,6 @@ import com.aelion.appliActivite.dto.ActivityLightDTO;
 import com.aelion.appliActivite.dto.jwt.JwtResponse;
 
 import com.aelion.appliActivite.dto.jwt.JwtRequest;
-import com.aelion.appliActivite.dto.jwt.JwtResponse;
 import com.aelion.appliActivite.exceptions.NotAuthorizedException;
 import com.aelion.appliActivite.services.IActivityService;
 
