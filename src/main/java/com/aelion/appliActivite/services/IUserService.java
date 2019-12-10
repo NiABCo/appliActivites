@@ -5,6 +5,6 @@ import com.aelion.appliActivite.services.common.IServiceActions;
 
 public interface IUserService extends IServiceActions<User, Long>{
 
-	
+	User findByMail(String email);
 	
 }

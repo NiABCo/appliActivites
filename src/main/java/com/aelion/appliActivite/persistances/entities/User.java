@@ -51,6 +51,9 @@ public class User implements Serializable{
 	
 	@Column(name = "photo", nullable = true)
 	private String photo;
+	
+	@Column(name = "email", nullable = false)
+	private String email;
 
 	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
@@ -154,6 +157,23 @@ public class User implements Serializable{
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+	
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public List<Message> getSendMsg() {
