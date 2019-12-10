@@ -21,7 +21,7 @@ import com.aelion.appliActivite.persistances.entities.Activity;
 import com.aelion.appliActivite.services.IActivityService;
 
 @RestController
-@RequestMapping(path = "/users/activity")
+@RequestMapping(path = "/activity")
 public class ActivityController {
 
 	@Autowired
@@ -30,22 +30,19 @@ public class ActivityController {
 	@Autowired
 	ModelMapper mapper;
 
-	@GetMapping("/list")
-	public List<ActivityLightDTO> getAllActivities() {
-		return activityService.findAll().stream().map(activity -> mapper.map(activity, ActivityLightDTO.class)).collect(Collectors.toList());
-	}
+	
 
-	@GetMapping("/users/{id}")
+	@GetMapping("/{id}")
 	public ActivityFullDTO getActivityById(@PathVariable(name = "id") Long id) {
 		return mapper.map(this.activityService.findOne(id), ActivityFullDTO.class);
 	}
 
-	@PostMapping("/creator")
+	@PostMapping()
 	public Activity saveActivity(@Valid @RequestBody Activity activity) {
 		return this.activityService.save(activity);
 	}
 
-	@DeleteMapping("/creator/{id}")
+	@DeleteMapping("/{id}")
 	public boolean deleteActivityById(@PathVariable(name = "id") Long id) {
 		return this.activityService.deleteById(id);
 	}

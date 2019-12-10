@@ -39,7 +39,7 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		newUser.setBirthDate(birthday);
 		newUser.setDescription("aucune");
 		newUser.setNickname("Benji49610");
-		newUser.setPassword("benjamin");
+		newUser.setPassword("$2y$10$M468XrOJwPcLcDE96xbUZuRZ3NBGKrnevYs81BnLNVOrUR21aWGKS");
 		newUser.setEmail("ben49.pinon@gmail.com");
 		this.userService.save(newUser);
 	}

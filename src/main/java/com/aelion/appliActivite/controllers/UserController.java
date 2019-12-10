@@ -31,7 +31,7 @@ public class UserController {
 	@Autowired
 	ModelMapper mapper;
 	
-	@GetMapping("/admin/list")
+	@GetMapping("/list")
 	public List<UserLightDTO> getAllUsers(){
 		return userService.findAll().stream().map(user -> mapper.map(user, UserLightDTO.class)).collect(Collectors.toList());
 	}
