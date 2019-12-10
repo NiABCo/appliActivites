@@ -1,12 +1,9 @@
 package com.aelion.appliActivite;
 import java.time.LocalDate;
-import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.aelion.appliActivite.persistances.entities.User;
-import com.aelion.appliActivite.services.IUserService;
 import com.aelion.appliActivite.persistances.entities.User;
 import com.aelion.appliActivite.services.IUserService;
 
@@ -24,7 +21,7 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 
 
-		createUser();
+		//createUser();
 	}
 
 	public void createUser() {
