@@ -94,6 +94,7 @@ public class UserFullDTO {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+
 	public List<Message> getSendMsg() {
 		return sendMsg;
 	}
