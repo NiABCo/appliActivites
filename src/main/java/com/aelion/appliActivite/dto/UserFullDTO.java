@@ -19,7 +19,6 @@ public class UserFullDTO {
 	
 	private List<Hobby> hobbies;
 
-
 	private String description;
 	
 	private String password;
