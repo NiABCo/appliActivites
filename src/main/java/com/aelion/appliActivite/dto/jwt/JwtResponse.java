@@ -2,17 +2,33 @@ package com.aelion.appliActivite.dto.jwt;
 
 import java.io.Serializable;
 
-public class JwtResponse implements Serializable {
+public class JWTResponse implements Serializable {
+
 	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
-	private final String jwttoken;
+	private String token;
 	
-	public JwtResponse(String jwttoken) {
-		this.jwttoken = jwttoken;
+	public JWTResponse() {
+		super();
+	};
+	
+	
+	public JWTResponse(String token) {
+		super();
+		this.token = token;
+	}
+	
+	
+	
+	public void setToken(String token) {
+		this.token = token;
 	}
 	
 	public String getToken() {
-		return this.jwttoken;
+		return this.token;
 	}
 }

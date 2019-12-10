@@ -26,7 +26,6 @@ public class UserFullDTO {
 	
 	private String photo;
 
-
 	private List<Message> sendMsg;
 
 	private List<Message> receivedMsg;
@@ -95,7 +94,7 @@ public class UserFullDTO {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
+
 	public List<Message> getSendMsg() {
 		return sendMsg;
 	}
