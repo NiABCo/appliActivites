@@ -50,12 +50,5 @@ public class ActivityController {
 		return this.activityService.deleteById(id);
 	}
 
-	@DeleteMapping("/{id}")
-	public boolean deleteActivityByObject(@PathVariable(name = "id") Long id) {
-		Activity activity = this.activityService.findOne(id);
-
-		return this.activityService.deleteByObject(activity);
-
-	}
 
 }
