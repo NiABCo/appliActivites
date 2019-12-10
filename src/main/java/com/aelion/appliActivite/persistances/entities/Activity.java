@@ -61,7 +61,7 @@ public class Activity implements Serializable {
 	
 
 	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn (name = "id_user", nullable = false)
+	@JoinColumn (name = "id_act", nullable = false)
 	private List<ActivityHasUser> actHasUser;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
