@@ -23,4 +23,10 @@ public class UserService extends AbstractService<User, Long> implements IUserSer
 		return userRepository;
 	}
 
+	@Override
+	public User findByMail(String email) {
+		// TODO Auto-generated method stub
+		return userRepository.findByMail(email);
+	}
+
 }
