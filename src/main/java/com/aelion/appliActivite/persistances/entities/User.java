@@ -31,7 +31,6 @@ public class User implements Serializable{
 	@Column(name="firstname", nullable = false)
 	private String firstname;
 
-
 	@Column(name="birth_date", nullable = false)
 	private LocalDate birthDate;
 	
