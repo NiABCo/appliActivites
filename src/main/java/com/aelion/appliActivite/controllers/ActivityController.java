@@ -35,7 +35,7 @@ public class ActivityController {
 		return activityService.findAll().stream().map(activity -> mapper.map(activity, ActivityLightDTO.class)).collect(Collectors.toList());
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/users/{id}")
 	public ActivityFullDTO getActivityById(@PathVariable(name = "id") Long id) {
 		return mapper.map(this.activityService.findOne(id), ActivityFullDTO.class);
 	}

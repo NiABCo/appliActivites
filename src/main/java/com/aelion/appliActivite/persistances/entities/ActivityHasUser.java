@@ -14,19 +14,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="activity_has_user")
+@Table(name = "activity_has_user")
 public class ActivityHasUser {
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@ManyToOne (cascade = CascadeType.ALL )
-	@JoinColumn (name = "id_user", referencedColumnName = "id", insertable = false , updatable = false)
-	 private User user;
-	
-	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn (name = "id_status", nullable = false)
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_user", referencedColumnName = "id", insertable = false, updatable = false)
+	private User user;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@JoinColumn(name = "id_status", nullable = false)
 	private List<Status> status;
 
 	public Long getId() {
@@ -94,6 +94,5 @@ public class ActivityHasUser {
 			return false;
 		return true;
 	}
-	
- 
+
 }
