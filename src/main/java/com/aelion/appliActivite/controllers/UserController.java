@@ -36,12 +36,12 @@ public class UserController {
 		return userService.findAll().stream().map(user -> mapper.map(user, UserLightDTO.class)).collect(Collectors.toList());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/member/{id}")
 	public UserFullDTO getUserById(@PathVariable(name = "id") Long id) {
 		return mapper.map(userService.findOne(id), UserFullDTO.class) ;
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/users/{id}")
 	public boolean deleteUserById(@PathVariable(name = "id") Long id) {
 		return  userService.deleteById(id);
 	}

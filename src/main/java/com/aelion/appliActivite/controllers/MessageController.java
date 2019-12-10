@@ -23,7 +23,7 @@ import com.aelion.appliActivite.persistances.entities.Message;
 import com.aelion.appliActivite.services.IMessageService;
 
 @RestController
-@RequestMapping(path = "/users/message")
+@RequestMapping(path = "/message")
 public class MessageController {
 	
 	@Autowired

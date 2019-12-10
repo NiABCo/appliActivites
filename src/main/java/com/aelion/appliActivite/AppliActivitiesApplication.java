@@ -25,6 +25,7 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 	}
 
 	public void createUser() {
+
 		LocalDate birthDate = LocalDate.now();
 
 		User user = new User();
@@ -36,6 +37,22 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		user.setPassword("taliaAlGhul");
 		user.setEmail("batMail@savetheworld.us");
 		userService.save(user);
+
+		
+		
+		User newUser = new User();
+		
+		LocalDate birthday = LocalDate.now();
+		
+		newUser.setLastname("PINON");
+		newUser.setFirstname("Benjamin");
+		newUser.setBirthDate(birthday);
+		newUser.setDescription("aucune");
+		newUser.setNickname("Benji49610");
+		newUser.setPassword("$2y$10$M468XrOJwPcLcDE96xbUZuRZ3NBGKrnevYs81BnLNVOrUR21aWGKS");
+		newUser.setEmail("ben49.pinon@gmail.com");
+		this.userService.save(newUser);
+
 	}
 
 }

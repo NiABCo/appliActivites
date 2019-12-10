@@ -11,7 +11,8 @@ public class UserFullDTO {
 	private String lastname;
 	
 	private String firstname;
-
+	
+	private String email;
 
 	private LocalDate birthDate;
 	
@@ -24,8 +25,6 @@ public class UserFullDTO {
 	private String password;
 	
 	private String photo;
-	
-	private String email;
 
 	private List<Message> sendMsg;
 
@@ -120,8 +119,6 @@ public class UserFullDTO {
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", description=" + description + ", password="
 				+ password + ", photo=" + photo + ", sendMsg=" + sendMsg + ", receivedMsg=" + receivedMsg + "]";
 	}
-
-
 	
 	
 	

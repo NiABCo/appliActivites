@@ -1,5 +1,4 @@
 package com.aelion.appliActivite.controllers;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,20 +18,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aelion.appliActivite.config.JwtTokenUtil;
-import com.aelion.appliActivite.dto.UserLightDTO;
+import com.aelion.appliActivite.dto.ActivityLightDTO;
+import com.aelion.appliActivite.dto.jwt.JWTResponse;
 import com.aelion.appliActivite.dto.jwt.JwtRequest;
-import com.aelion.appliActivite.dto.jwt.JwtResponse;
 import com.aelion.appliActivite.exceptions.NotAuthorizedException;
-import com.aelion.appliActivite.services.IUserService;
+import com.aelion.appliActivite.services.IActivityService;
+
 
 
 
 @RestController
-@RequestMapping(path = "/api/public")
+@RequestMapping(path = "/public")
 public class PublicController {
 
-	@Autowired
-	private IUserService userService;
+
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -44,6 +43,9 @@ public class PublicController {
 	private UserDetailsService userDetailsService;
 	
 	@Autowired
+	IActivityService activityService;
+	
+	@Autowired
 	private ModelMapper mapper;
 	
 	@PostMapping(value = "/authenticate")
@@ -52,17 +54,14 @@ public class PublicController {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 			final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 			final String token = jwtTokenUtil.generateToken(userDetails);
-			return ResponseEntity.ok(new JwtResponse(token));
+			return ResponseEntity.ok(new JWTResponse(token));
 		} catch (DisabledException | BadCredentialsException e) {
 			throw new NotAuthorizedException(e.getMessage());
 		}		
 	}
 	
-	@GetMapping(path = "/user")
-	public List<UserLightDTO> findAll() {
-		return userService.findAll()
-				.stream()
-				.map(u -> mapper.map(u, UserLightDTO.class))
-				.collect(Collectors.toList());
+	@GetMapping("/activity/list")
+	public List<ActivityLightDTO> getAllActivities() {
+		return activityService.findAll().stream().map(activity -> mapper.map(activity, ActivityLightDTO.class)).collect(Collectors.toList());
 	}
 }
