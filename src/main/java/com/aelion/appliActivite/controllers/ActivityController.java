@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aelion.appliActivite.config.Converter;
 import com.aelion.appliActivite.dto.ActivityFullDTO;
 import com.aelion.appliActivite.dto.ActivityLightDTO;
 import com.aelion.appliActivite.persistances.entities.Activity;
 import com.aelion.appliActivite.services.IActivityService;
-import com.aelion.appliActivite.services.impl.ActivityService;
 
 @RestController
 @RequestMapping(path = "/users/activity")
@@ -52,12 +50,6 @@ public class ActivityController {
 		return this.activityService.deleteById(id);
 	}
 
-	@DeleteMapping("/creator/{id}")
-	public boolean deleteActivityByObject(@PathVariable(name = "id") Long id) {
-		Activity activity = this.activityService.findOne(id);
 
-		return this.activityService.deleteByObject(activity);
-
-	}
 
 }

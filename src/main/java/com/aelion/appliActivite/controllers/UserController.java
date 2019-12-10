@@ -1,7 +1,6 @@
 package com.aelion.appliActivite.controllers;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -16,12 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aelion.appliActivite.config.Converter;
 import com.aelion.appliActivite.dto.UserFullDTO;
 import com.aelion.appliActivite.dto.UserLightDTO;
 import com.aelion.appliActivite.persistances.entities.User;
 import com.aelion.appliActivite.services.IUserService;
-import com.aelion.appliActivite.services.impl.UserService;
 
 
 @RestController
@@ -49,11 +46,6 @@ public class UserController {
 		return  userService.deleteById(id);
 	}
 	
-	@DeleteMapping("/admin/{id}")
-	public boolean deleteUserByObject(@PathVariable(name = "id") Long id) {
-		User user = userService.findOne(id);
-		return userService.deleteByObject(user);
-	}
 	
 	@PostMapping()
 	public User saveUser(@Valid @RequestBody User user) {

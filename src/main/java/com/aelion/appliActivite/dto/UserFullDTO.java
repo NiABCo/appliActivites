@@ -3,12 +3,6 @@ package com.aelion.appliActivite.dto;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-
 import com.aelion.appliActivite.persistances.entities.Hobby;
 import com.aelion.appliActivite.persistances.entities.Message;
 
@@ -52,6 +46,66 @@ public class UserFullDTO {
 		this.receivedMsg = receivedMsg;
 	}
 	
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public List<Hobby> getHobbies() {
+		return hobbies;
+	}
+	public void setHobbies(List<Hobby> hobbies) {
+		this.hobbies = hobbies;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public List<Message> getSendMsg() {
+		return sendMsg;
+	}
+	public void setSendMsg(List<Message> sendMsg) {
+		this.sendMsg = sendMsg;
+	}
+	public List<Message> getReceivedMsg() {
+		return receivedMsg;
+	}
+	public void setReceivedMsg(List<Message> receivedMsg) {
+		this.receivedMsg = receivedMsg;
+	}
 	@Override
 	public String toString() {
 		return "UserLightDTO [lastname=" + lastname + ", firstname=" + firstname + ", birthDate=" + birthDate
