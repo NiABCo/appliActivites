@@ -3,6 +3,8 @@ package com.aelion.appliActivite.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aelion.appliActivite.persistances.entities.Hobby;
 
@@ -10,7 +12,8 @@ import com.aelion.appliActivite.persistances.repositories.IHobbyRepository;
 import com.aelion.appliActivite.services.IHobbyService;
 import com.aelion.appliActivite.services.common.AbstractService;
 
-
+@Service
+@Transactional
 public class HobbyService extends AbstractService<Hobby, Long> implements IHobbyService{
 
 	@Autowired
