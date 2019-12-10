@@ -1,5 +1,4 @@
 package com.aelion.appliActivite.controllers;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,20 +18,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aelion.appliActivite.config.JwtTokenUtil;
-import com.aelion.appliActivite.dto.UserLightDTO;
+import com.aelion.appliActivite.dto.ActivityLightDTO;
 import com.aelion.appliActivite.dto.jwt.JwtRequest;
 import com.aelion.appliActivite.dto.jwt.JwtResponse;
 import com.aelion.appliActivite.exceptions.NotAuthorizedException;
-import com.aelion.appliActivite.services.IUserService;
+import com.aelion.appliActivite.services.IActivityService;
+
 
 
 
 @RestController
-@RequestMapping(path = "/api/public")
+@RequestMapping(path = "/public")
 public class PublicController {
 
-	@Autowired
-	private IUserService userService;
+
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -42,6 +41,9 @@ public class PublicController {
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	IActivityService activityService;
 	
 	@Autowired
 	private ModelMapper mapper;
@@ -58,11 +60,8 @@ public class PublicController {
 		}		
 	}
 	
-	@GetMapping(path = "/user")
-	public List<UserLightDTO> findAll() {
-		return userService.findAll()
-				.stream()
-				.map(u -> mapper.map(u, UserLightDTO.class))
-				.collect(Collectors.toList());
+	@GetMapping("/activity/list")
+	public List<ActivityLightDTO> getAllActivities() {
+		return activityService.findAll().stream().map(activity -> mapper.map(activity, ActivityLightDTO.class)).collect(Collectors.toList());
 	}
 }
