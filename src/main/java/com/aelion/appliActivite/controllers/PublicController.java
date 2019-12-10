@@ -41,7 +41,7 @@ public class PublicController {
 	private UserDetailsService userDetailsService;
 	
 	@Autowired
-	IActivityService activityService;
+	private IActivityService activityService;
 	
 	@Autowired
 	private ModelMapper mapper;
