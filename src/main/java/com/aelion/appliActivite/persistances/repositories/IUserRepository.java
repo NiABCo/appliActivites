@@ -8,8 +8,13 @@ import com.aelion.appliActivite.persistances.entities.User;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, Long>{
-	
-	
-	@Query(value = "SELECT * FROM users WHERE email = ?1", nativeQuery=true)
-	User findByMail(String username);
+
+
+	@Query(nativeQuery = true,value = ""
+			+ "SELECT * "
+			+ "FROM users "
+			+ "WHERE email = ?1 LIMIT 0,1")
+	User findByMail(String email);
+
+
 }

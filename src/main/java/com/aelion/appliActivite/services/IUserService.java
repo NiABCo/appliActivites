@@ -9,6 +9,8 @@ import com.aelion.appliActivite.services.common.IServiceActions;
 @Transactional
 public interface IUserService extends IServiceActions<User, Long>{
 
-	User findByMail(String userName);
+
+	User findByMail(String email);
+
 	
 }
