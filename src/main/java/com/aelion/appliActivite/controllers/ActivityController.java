@@ -1,7 +1,5 @@
 package com.aelion.appliActivite.controllers;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aelion.appliActivite.dto.ActivityFullDTO;
-import com.aelion.appliActivite.dto.ActivityLightDTO;
 import com.aelion.appliActivite.persistances.entities.Activity;
 import com.aelion.appliActivite.services.IActivityService;
 
