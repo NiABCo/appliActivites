@@ -1,16 +1,6 @@
 package com.aelion.appliActivite.dto;
 
 import java.time.LocalDate;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-
-import com.aelion.appliActivite.persistances.entities.ActivityHasUser;
-import com.aelion.appliActivite.persistances.entities.Message;
 
 public class ActivityLightDTO {
 	

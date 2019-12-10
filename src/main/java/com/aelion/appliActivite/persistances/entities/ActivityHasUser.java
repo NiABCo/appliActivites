@@ -22,10 +22,10 @@ public class ActivityHasUser {
 	private Long id;
 	
 	@ManyToOne (cascade = CascadeType.ALL )
-	@JoinColumn (name = "id_user", referencedColumnName = "id")
+	@JoinColumn (name = "id_user", referencedColumnName = "id", insertable = false , updatable = false)
 	 private User user;
 	
-	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn (name = "id_status", nullable = false)
 	private List<Status> status;
 

@@ -5,11 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class Converter<T> {
+public class Converter {
 
 	@Bean
 	public ModelMapper initMapper() {
 		return new ModelMapper();
 	}
+	
 	
 }
