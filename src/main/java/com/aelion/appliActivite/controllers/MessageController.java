@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ import com.aelion.appliActivite.persistances.entities.Message;
 import com.aelion.appliActivite.services.IMessageService;
 
 @RestController
-@RequestMapping(path = "/message")
+@RequestMapping(path = "/users/message")
 public class MessageController {
 	
 	@Autowired
@@ -51,5 +52,10 @@ public class MessageController {
 		return ResponseEntity.ok("Command has been added");
 	}
 	
+	
+	@DeleteMapping("/{id}")
+	public boolean deleteById (@PathVariable(name = "id") Long id) {
+		return  svc.deleteById(id);
+	}
 	
 }
