@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -38,11 +38,14 @@ public class User implements Serializable{
 	@Column(name="nickname", nullable = true)
 	private String nickname;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobby> hobbies;
 
-
+	@Column(name="email", nullable = false)
+	private String email;
+	
+	
 	@Column(name="description", nullable = false)
 	private String description;
 	
@@ -52,11 +55,11 @@ public class User implements Serializable{
 	@Column(name = "photo", nullable = true)
 	private String photo;
 
-	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
 	private List<Message> sendMsg;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_receiver", nullable = false)
 	private List<Message> receivedMsg;
 	
@@ -71,7 +74,7 @@ public class User implements Serializable{
 	}
 	
 	public User(Long id, String lastname, String firstName, LocalDate birthDate, String nickname, List<Hobby> hobbies,
-			String description, String password, String photo) {
+			String description, String password, String photo, String email) {
 		super();
 		this.id = id;
 		this.lastname = lastname;
@@ -82,6 +85,7 @@ public class User implements Serializable{
 		this.description = description;
 		this.password = password;
 		this.photo = photo;
+		this.email = email;
 	}
 
 
@@ -105,12 +109,7 @@ public class User implements Serializable{
 	public void setName(String name) {
 		this.lastname = name;
 	}
-	public String getFirstName() {
-		return firstname;
-	}
-	public void setFirstName(String firstName) {
-		this.firstname = firstName;
-	}
+	
 	public LocalDate getBirthDate() {
 		return birthDate;
 	}
@@ -171,24 +170,49 @@ public class User implements Serializable{
 	public void setReceivedMsg(List<Message> receivedMsg) {
 		this.receivedMsg = receivedMsg;
 	}
+	
+	
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	
 
 	/******************************************
 	************* METHODS *******************
 	******************************************/
 	
 	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + lastname + ", firstName=" + firstname + ", birthDate=" + birthDate
-				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", description=" + description + ", password="
-				+ password + "]";
-	}
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
+		result = prime * result + ((hobbies == null) ? 0 : hobbies.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
+		result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
+		result = prime * result + ((receivedMsg == null) ? 0 : receivedMsg.hashCode());
+		result = prime * result + ((sendMsg == null) ? 0 : sendMsg.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -198,14 +222,76 @@ public class User implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (birthDate == null) {
+			if (other.birthDate != null)
+				return false;
+		} else if (!birthDate.equals(other.birthDate))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstname == null) {
+			if (other.firstname != null)
+				return false;
+		} else if (!firstname.equals(other.firstname))
+			return false;
+		if (hobbies == null) {
+			if (other.hobbies != null)
+				return false;
+		} else if (!hobbies.equals(other.hobbies))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (lastname == null) {
+			if (other.lastname != null)
+				return false;
+		} else if (!lastname.equals(other.lastname))
+			return false;
+		if (nickname == null) {
+			if (other.nickname != null)
+				return false;
+		} else if (!nickname.equals(other.nickname))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (photo == null) {
+			if (other.photo != null)
+				return false;
+		} else if (!photo.equals(other.photo))
+			return false;
+		if (receivedMsg == null) {
+			if (other.receivedMsg != null)
+				return false;
+		} else if (!receivedMsg.equals(other.receivedMsg))
+			return false;
+		if (sendMsg == null) {
+			if (other.sendMsg != null)
+				return false;
+		} else if (!sendMsg.equals(other.sendMsg))
+			return false;
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", birthDate=" + birthDate
+				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", email=" + email + ", description="
+				+ description + ", password=" + password + ", photo=" + photo + ", sendMsg=" + sendMsg
+				+ ", receivedMsg=" + receivedMsg + "]";
+	}
 	
 
 }

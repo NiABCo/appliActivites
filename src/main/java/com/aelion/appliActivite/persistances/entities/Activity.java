@@ -60,11 +60,11 @@ public class Activity implements Serializable {
 	private String status;
 	
 
-	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn (name = "id_user", nullable = false)
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@JoinColumn (name = "id_act", nullable = false)
 	private List<ActivityHasUser> actHasUser;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_activityMsg", nullable = false)
 	private List<Message> activityMessage;
 
