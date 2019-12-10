@@ -1,7 +1,6 @@
 package com.aelion.appliActivite.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.aelion.appliActivite.config.JwtTokenUtil;
 import com.aelion.appliActivite.dto.ActivityLightDTO;
-import com.aelion.appliActivite.dto.jwt.JWTResponse;
+import com.aelion.appliActivite.dto.jwt.JwtResponse;
 import com.aelion.appliActivite.dto.jwt.JwtRequest;
 import com.aelion.appliActivite.exceptions.NotAuthorizedException;
 import com.aelion.appliActivite.services.IActivityService;
@@ -54,7 +52,7 @@ public class PublicController {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 			final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 			final String token = jwtTokenUtil.generateToken(userDetails);
-			return ResponseEntity.ok(new JWTResponse(token));
+			return ResponseEntity.ok(new JwtResponse(token));
 		} catch (DisabledException | BadCredentialsException e) {
 			throw new NotAuthorizedException(e.getMessage());
 		}		
