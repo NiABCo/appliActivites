@@ -10,9 +10,11 @@ public class UserLightDTO {
 	 * *****************************
 	 *******************************/
 	
+
 	public UserLightDTO() {};
 	
 	
+
 	public UserLightDTO(String lastname, String email) {
 		super();
 		this.lastname = lastname;

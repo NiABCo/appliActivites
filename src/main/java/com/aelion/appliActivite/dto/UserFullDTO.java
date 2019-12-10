@@ -25,6 +25,8 @@ public class UserFullDTO {
 	private String password;
 	
 	private String photo;
+	
+	private String email;
 
 	private List<Message> sendMsg;
 
@@ -93,6 +95,13 @@ public class UserFullDTO {
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public List<Message> getSendMsg() {
 		return sendMsg;
