@@ -56,6 +56,9 @@ public class User implements Serializable{
 	
 	@Column(name = "photo", nullable = true)
 	private String photo;
+	
+	@Column(name = "role", nullable= false)
+	private String role;
 
 	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
@@ -74,7 +77,6 @@ public class User implements Serializable{
 	***************************************/
 	
 	public User() {
-		
 	}
 	
 	public User(Long id, String lastname, String firstName, LocalDate birthDate, String nickname, List<Hobby> hobbies,
@@ -295,23 +297,6 @@ public class User implements Serializable{
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", email=" + email + ", description="
 				+ description + ", password=" + password + ", photo=" + photo + ", sendMsg=" + sendMsg
 				+ ", receivedMsg=" + receivedMsg + "]";
-	}
-	
-	
-	
-	public enum Role {  
-		  
-	    ADMIN("Admin"), USER("User"), MODO("Moderateur");  
-	      
-	     private String abreviation ;  
-	      
-	     private Role(String abreviation) {  
-	         this.abreviation = abreviation ;  
-	    }  
-	      
-	     public String getRole() {  
-	         return  this.abreviation ;  
-	    }  
 	}
 	
 	
