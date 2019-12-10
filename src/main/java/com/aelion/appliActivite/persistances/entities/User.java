@@ -65,6 +65,8 @@ public class User implements Serializable{
 	@JoinColumn(name = "id_receiver", nullable = false)
 	private List<Message> receivedMsg;
 	
+	
+	
 
 
 	/****************************************
@@ -295,5 +297,26 @@ public class User implements Serializable{
 				+ ", receivedMsg=" + receivedMsg + "]";
 	}
 	
+	
+	
+	public enum Role {  
+		  
+	    ADMIN("Admin"), USER("User"), MODO("Moderateur");  
+	      
+	     private String abreviation ;  
+	      
+	     private Role(String abreviation) {  
+	         this.abreviation = abreviation ;  
+	    }  
+	      
+	     public String getRole() {  
+	         return  this.abreviation ;  
+	    }  
+	}
+	
+	
+	
 
 }
+
+
