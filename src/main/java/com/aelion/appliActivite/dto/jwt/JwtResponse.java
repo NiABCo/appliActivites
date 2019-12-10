@@ -13,7 +13,6 @@ public class JwtResponse implements Serializable{
 	private String token;
 	
 
-=======
 	public JwtResponse() {
 		super();
 	};
