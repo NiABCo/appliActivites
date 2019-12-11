@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aelion.appliActivite.dto.MessageFull;
 import com.aelion.appliActivite.dto.MessageLight;
 import com.aelion.appliActivite.dto.MessagePost;
+import com.aelion.appliActivite.exceptions.AppActiArgumentNotValidException;
 import com.aelion.appliActivite.persistances.entities.Message;
 import com.aelion.appliActivite.services.IAuthChecker;
 import com.aelion.appliActivite.services.IMessageService;
@@ -52,12 +53,31 @@ public class MessageController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> save (@Valid @RequestBody MessagePost msg){
+	public ResponseEntity<String> save (@Valid @RequestBody MessagePost msg) throws AppActiArgumentNotValidException{
+		if (
+				(msg.getReceiverEmail() == null && msg.getActivityId() == null) ||
+				(msg.getReceiverEmail().isBlank())
+				
+				) {
+			ResponseEntity.badRequest();
+			throw new AppActiArgumentNotValidException("Message must have a receiver");
+		}
+		
+		if (!msg.getReceiverEmail().isBlank() && msg.getActivityId()!=null){
+			ResponseEntity.badRequest();
+			throw new AppActiArgumentNotValidException("Message can't be sent to user AND activity");
+		}
+		
 		msg.setSendTime(LocalDateTime.now());
 		msg.setStatus("send");
 		authChker.getCurrentUser();
-		svc.sendMessage(mapper.map(msg, Message.class),authChker.getCurrentUser().getId());
-		return ResponseEntity.ok("Command has been added");
+		if (msg.getReceiverEmail()!=null && !msg.getReceiverEmail().isBlank()) {
+			svc.sendMessageToUser(mapper.map(msg, Message.class),authChker.getCurrentUser().getId(), msg.getReceiverEmail());
+			return ResponseEntity.ok("Message has been sent");
+		}
+		svc.sendMessageToActivity(mapper.map(msg, Message.class),authChker.getCurrentUser().getId(), msg.getActivityId());
+		return ResponseEntity.ok("Message has been sent");
+		
 	}
 	
 	

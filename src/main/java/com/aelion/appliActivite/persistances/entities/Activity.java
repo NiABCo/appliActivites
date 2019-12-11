@@ -65,7 +65,7 @@ public class Activity implements Serializable {
 	private List<ActivityHasUser> actHasUser;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "id_activityMsg")
+	@JoinColumn(name = "id_activity_msg")
 	private List<Message> activityMessage;
 	
 
@@ -189,6 +189,36 @@ public class Activity implements Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public List<ActivityHasUser> getActHasUser() {
+		return actHasUser;
+	}
+
+
+	public void setActHasUser(List<ActivityHasUser> actHasUser) {
+		this.actHasUser = actHasUser;
+	}
+
+
+	public List<Message> getActivityMessage() {
+		return activityMessage;
+	}
+
+
+	public void setActivityMessage(List<Message> activityMessage) {
+		this.activityMessage = activityMessage;
 	}
 
 

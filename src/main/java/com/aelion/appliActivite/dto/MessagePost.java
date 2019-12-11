@@ -2,6 +2,7 @@ package com.aelion.appliActivite.dto;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 public class MessagePost {
@@ -15,6 +16,11 @@ public class MessagePost {
 	private LocalDateTime sendTime;
 	
 	private String status;
+	
+	@Email
+	private String receiverEmail;
+	
+	private Long activityId;
 	
 	/**
 	 * GETTERS SETTERS
@@ -53,6 +59,24 @@ public class MessagePost {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	
+	
+	public String getReceiverEmail() {
+		return receiverEmail;
+	}
+
+	public void setReceiverEmail(String receiverEmail) {
+		this.receiverEmail = receiverEmail;
+	}
+
+	public Long getActivityId() {
+		return activityId;
+	}
+
+	public void setActivityId(Long activityId) {
+		this.activityId = activityId;
 	}
 
 	@Override
