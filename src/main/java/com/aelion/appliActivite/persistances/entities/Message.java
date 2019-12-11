@@ -1,6 +1,8 @@
 package com.aelion.appliActivite.persistances.entities;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,9 +30,11 @@ public class Message implements Serializable{
 	@Column(name = "send_time", nullable = false)
 	private LocalDateTime sendTime;
 
-	@Column(name = "status", nullable = false)
+	@Column(name = "status", nullable = true)
 	private String status;
 
+	
+	
 
 	/****************************************
 	 ******* CONSTRUCTORS *******************
@@ -81,6 +85,15 @@ public class Message implements Serializable{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/******************************************

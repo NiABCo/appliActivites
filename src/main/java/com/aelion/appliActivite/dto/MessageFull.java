@@ -3,6 +3,7 @@ package com.aelion.appliActivite.dto;
 import java.time.LocalDateTime;
 
 
+
 public class MessageFull {
 
 	private String title;

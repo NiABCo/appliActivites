@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aelion.appliActivite.dto.UserFullDTO;
 import com.aelion.appliActivite.dto.UserLightDTO;
+import com.aelion.appliActivite.dto.UserPost;
 import com.aelion.appliActivite.persistances.entities.User;
 import com.aelion.appliActivite.services.IUserService;
 
@@ -48,9 +50,10 @@ public class UserController {
 	
 	
 	@PostMapping()
-	public User saveUser(@Valid @RequestBody User user) {
-	
-		return userService.save(user);
+	public ResponseEntity<String> saveUser(@Valid @RequestBody UserPost userP) {
+		User user = mapper.map(userP, User.class);
+		userService.saveUser(user);
+		return ResponseEntity.ok("User has been added");
 	}
 	
 }

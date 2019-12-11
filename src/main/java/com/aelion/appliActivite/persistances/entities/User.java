@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable{
@@ -41,7 +42,7 @@ public class User implements Serializable{
 	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobby> hobbies;
 
-	@Column(name="email", nullable = false)
+	@Column(name="email", nullable = false, unique = true)
 	private String email;
 	
 	
@@ -59,8 +60,11 @@ public class User implements Serializable{
 	private List<Message> sendMsg;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "id_receiver", nullable = false)
+	@JoinColumn(name = "id_receiver")
 	private List<Message> receivedMsg;
+	
+	@Column(name = "Role")
+	private String role;
 	
 	
 	
@@ -71,7 +75,6 @@ public class User implements Serializable{
 	***************************************/
 	
 	public User() {
-		
 	}
 	
 	public User(Long id, String lastname, String firstName, LocalDate birthDate, String nickname, List<Hobby> hobbies,
@@ -189,8 +192,6 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
-	
-
 	/******************************************
 	************* METHODS *******************
 	******************************************/
@@ -292,23 +293,6 @@ public class User implements Serializable{
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", email=" + email + ", description="
 				+ description + ", password=" + password + ", photo=" + photo + ", sendMsg=" + sendMsg
 				+ ", receivedMsg=" + receivedMsg + "]";
-	}
-	
-	
-	
-	public enum Role {  
-		  
-	    ADMIN("Admin"), USER("User"), MODO("Moderateur");  
-	      
-	     private String abreviation ;  
-	      
-	     private Role(String abreviation) {  
-	         this.abreviation = abreviation ;  
-	    }  
-	      
-	     public String getRole() {  
-	         return  this.abreviation ;  
-	    }  
 	}
 	
 	

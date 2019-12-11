@@ -42,7 +42,7 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		user.setPassword("taliaAlGhul");
 		user.setEmail("batMail@savetheworld.us");
 		userService.save(user);
-
+	
 		
 		
 		User newUser = new User();
