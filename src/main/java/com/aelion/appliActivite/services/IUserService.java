@@ -11,6 +11,8 @@ public interface IUserService extends IServiceActions<User, Long>{
 
 
 	User findByMail(String email);
+	
+	User saveUser(User user);
 
 	
 }

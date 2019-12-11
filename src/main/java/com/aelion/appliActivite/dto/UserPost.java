@@ -3,48 +3,42 @@ package com.aelion.appliActivite.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+
 import com.aelion.appliActivite.persistances.entities.Hobby;
-import com.aelion.appliActivite.persistances.entities.Message;
 
-public class UserFullDTO {
+public class UserPost {
 
+	@NotBlank
 	private String lastname;
 	
+	@NotBlank
 	private String firstname;
 	
+	@Email
+	@NotBlank
 	private String email;
 
+	@Past
 	private LocalDate birthDate;
 	
 	private String nickname;
 	
 	private List<Hobby> hobbies;
 
+	@NotBlank
 	private String description;
 	
+	@NotBlank
 	private String password;
 	
 	private String photo;
 
-	private List<Message> sendMsg;
-
-	private List<Message> receivedMsg;
-
-	public UserFullDTO() {}
-	public UserFullDTO(String lastname, String firstname, LocalDate birthDate, String nickname, List<Hobby> hobbies,
-			String description, String password, String photo, List<Message> sendMsg, List<Message> receivedMsg) {
-		super();
-		this.lastname = lastname;
-		this.firstname = firstname;
-		this.birthDate = birthDate;
-		this.nickname = nickname;
-		this.hobbies = hobbies;
-		this.description = description;
-		this.password = password;
-		this.photo = photo;
-		this.sendMsg = sendMsg;
-		this.receivedMsg = receivedMsg;
-	}
+	/**
+	 * GETTERS / SETTERS
+	 */
 	
 	public String getLastname() {
 		return lastname;
@@ -94,24 +88,11 @@ public class UserFullDTO {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-
-	public List<Message> getSendMsg() {
-		return sendMsg;
-	}
-	public void setSendMsg(List<Message> sendMsg) {
-		this.sendMsg = sendMsg;
-	}
-	public List<Message> getReceivedMsg() {
-		return receivedMsg;
-	}
-	public void setReceivedMsg(List<Message> receivedMsg) {
-		this.receivedMsg = receivedMsg;
-	}
 	@Override
 	public String toString() {
 		return "UserLightDTO [lastname=" + lastname + ", firstname=" + firstname + ", birthDate=" + birthDate
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", description=" + description + ", password="
-				+ password + ", photo=" + photo + ", sendMsg=" + sendMsg + ", receivedMsg=" + receivedMsg + "]";
+				+ password + ", photo=" + photo + "]";
 	}
 	public String getEmail() {
 		return email;

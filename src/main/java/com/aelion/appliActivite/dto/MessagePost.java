@@ -2,18 +2,25 @@ package com.aelion.appliActivite.dto;
 
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 public class MessagePost {
 
+	@NotBlank
 	private String title;
 
+	@NotBlank
 	private String body;
 
-	@PastOrPresent
 	private LocalDateTime sendTime;
 	
-	private Long idSender;
+	private String status;
+	
+	@Email
+	private String receiverEmail;
+	
+	private Long activityId;
 	
 	/**
 	 * GETTERS SETTERS
@@ -42,18 +49,39 @@ public class MessagePost {
 	public void setSendTime(LocalDateTime sendTime) {
 		this.sendTime = sendTime;
 	}
+	
+	
+	
 
-	public Long getIdSender() {
-		return idSender;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setIdSender(Long idSender) {
-		this.idSender = idSender;
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	
+	
+	public String getReceiverEmail() {
+		return receiverEmail;
+	}
+
+	public void setReceiverEmail(String receiverEmail) {
+		this.receiverEmail = receiverEmail;
+	}
+
+	public Long getActivityId() {
+		return activityId;
+	}
+
+	public void setActivityId(Long activityId) {
+		this.activityId = activityId;
 	}
 
 	@Override
 	public String toString() {
-		return "MessagePost [title=" + title + ", body=" + body + ", sendTime=" + sendTime + ", idSender=" + idSender
+		return "MessagePost [title=" + title + ", body=" + body + ", sendTime=" + sendTime 
 				+ "]";
 	}
 
@@ -62,7 +90,6 @@ public class MessagePost {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((body == null) ? 0 : body.hashCode());
-		result = prime * result + ((idSender == null) ? 0 : idSender.hashCode());
 		result = prime * result + ((sendTime == null) ? 0 : sendTime.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
@@ -81,11 +108,6 @@ public class MessagePost {
 			if (other.body != null)
 				return false;
 		} else if (!body.equals(other.body))
-			return false;
-		if (idSender == null) {
-			if (other.idSender != null)
-				return false;
-		} else if (!idSender.equals(other.idSender))
 			return false;
 		if (sendTime == null) {
 			if (other.sendTime != null)
