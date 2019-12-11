@@ -63,6 +63,9 @@ public class User implements Serializable{
 	@JoinColumn(name = "id_receiver", nullable = false)
 	private List<Message> receivedMsg;
 	
+	@Column(name = "Role")
+	private String role;
+	
 	
 	
 
