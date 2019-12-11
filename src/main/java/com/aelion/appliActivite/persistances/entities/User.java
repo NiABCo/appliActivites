@@ -13,12 +13,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "users")
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	
+	@Transient
+	private String[] roles = {
+			"user","usermodo", "usermodoadmin"
+	};
+	
+	
+	
+	public String[] getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String[] roles) {
+		this.roles = roles;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +59,7 @@ public class User implements Serializable{
 	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobby> hobbies;
 
-	@Column(name="email", nullable = false)
+	@Column(name="email", nullable = false, unique = true)
 	private String email;
 	
 	
@@ -63,8 +80,8 @@ public class User implements Serializable{
 	@JoinColumn(name = "id_receiver", nullable = false)
 	private List<Message> receivedMsg;
 	
-	
-	
+	@Column(name="role", nullable = false)
+	private String role;
 
 
 	/****************************************
@@ -190,7 +207,15 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
-	
+	//Setter and Getter for the role, user by default
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = this.getRoles()[0];
+	}
 
 	/******************************************
 	************* METHODS *******************
@@ -296,7 +321,7 @@ public class User implements Serializable{
 	}
 	
 	
-	
+	/*
 	public enum Role {  
 		  
 	    ADMIN("Admin"), USER("User"), MODO("Moderateur");  
@@ -312,7 +337,7 @@ public class User implements Serializable{
 	    }  
 	}
 	
-	
+	*/
 	
 
 }

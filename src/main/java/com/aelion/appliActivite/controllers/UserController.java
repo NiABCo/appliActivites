@@ -22,7 +22,7 @@ import com.aelion.appliActivite.services.IUserService;
 
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/users/user")
 public class UserController {
 
 	@Autowired 
