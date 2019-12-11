@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,10 +50,10 @@ public class UserController {
 	
 	
 	@PostMapping()
-	public User saveUser(@Valid @RequestBody UserPost userP) {
+	public ResponseEntity<String> saveUser(@Valid @RequestBody UserPost userP) {
 		User user = mapper.map(userP, User.class);
-		System.out.println("User : "+user);
-		return userService.saveUser(user);
+		userService.saveUser(user);
+		return ResponseEntity.ok("User has been added");
 	}
 	
 }

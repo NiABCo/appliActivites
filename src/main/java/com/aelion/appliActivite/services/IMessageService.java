@@ -5,4 +5,6 @@ import com.aelion.appliActivite.services.common.IServiceActions;
 
 public interface IMessageService extends IServiceActions<Message, Long> {
 
+	void sendMessage(Message map, Long idSender);
+
 }

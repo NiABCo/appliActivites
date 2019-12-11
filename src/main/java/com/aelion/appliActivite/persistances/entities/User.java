@@ -61,7 +61,7 @@ public class User implements Serializable{
 	private List<Message> sendMsg;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "id_receiver", nullable = false)
+	@JoinColumn(name = "id_receiver")
 	private List<Message> receivedMsg;
 	
 	@Column(name = "Role")

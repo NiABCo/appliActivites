@@ -1,5 +1,6 @@
 package com.aelion.appliActivite.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,7 @@ import com.aelion.appliActivite.dto.MessageFull;
 import com.aelion.appliActivite.dto.MessageLight;
 import com.aelion.appliActivite.dto.MessagePost;
 import com.aelion.appliActivite.persistances.entities.Message;
+import com.aelion.appliActivite.services.IAuthChecker;
 import com.aelion.appliActivite.services.IMessageService;
 
 @RestController
@@ -31,6 +33,9 @@ public class MessageController {
 	
 	@Autowired
 	ModelMapper mapper;
+	
+	@Autowired
+	IAuthChecker authChker;
 
 	@GetMapping
 	public List<MessageLight> findAll(){
@@ -48,7 +53,10 @@ public class MessageController {
 	
 	@PostMapping
 	public ResponseEntity<String> save (@Valid @RequestBody MessagePost msg){
-		svc.save(mapper.map(msg, Message.class));
+		msg.setSendTime(LocalDateTime.now());
+		msg.setStatus("send");
+		authChker.getCurrentUser();
+		svc.sendMessage(mapper.map(msg, Message.class),authChker.getCurrentUser().getId());
 		return ResponseEntity.ok("Command has been added");
 	}
 	

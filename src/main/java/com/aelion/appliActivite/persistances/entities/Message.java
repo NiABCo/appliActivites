@@ -1,4 +1,5 @@
 package com.aelion.appliActivite.persistances.entities;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -28,9 +29,10 @@ public class Message implements Serializable{
 	@Column(name = "send_time", nullable = false)
 	private LocalDateTime sendTime;
 
-	@Column(name = "status", nullable = false)
+	@Column(name = "status", nullable = true)
 	private String status;
-
+	
+	
 
 	/****************************************
 	 ******* CONSTRUCTORS *******************
