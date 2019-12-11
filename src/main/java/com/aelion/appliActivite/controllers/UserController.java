@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aelion.appliActivite.dto.UserFullDTO;
 import com.aelion.appliActivite.dto.UserLightDTO;
+import com.aelion.appliActivite.dto.UserPost;
 import com.aelion.appliActivite.persistances.entities.User;
 import com.aelion.appliActivite.services.IUserService;
 
@@ -48,8 +49,9 @@ public class UserController {
 	
 	
 	@PostMapping()
-	public User saveUser(@Valid @RequestBody UserFullDTO userF) {
-		User user = mapper.map(userF, User.class);
+	public User saveUser(@Valid @RequestBody UserPost userP) {
+		User user = mapper.map(userP, User.class);
+		System.out.println("User : "+user);
 		return userService.save(user);
 	}
 	
