@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.aelion.appliActivite.config.JwtTokenUtil;
 import com.aelion.appliActivite.dto.ActivityLightDTO;
 import com.aelion.appliActivite.dto.jwt.JwtResponse;
+
 import com.aelion.appliActivite.dto.jwt.JwtRequest;
+
 import com.aelion.appliActivite.exceptions.NotAuthorizedException;
 import com.aelion.appliActivite.services.IActivityService;
 
@@ -42,7 +45,7 @@ public class PublicController {
 	private UserDetailsService userDetailsService;
 	
 	@Autowired
-	private IActivityService activityService;
+	IActivityService activityService;
 	
 	@Autowired
 	private ModelMapper mapper;

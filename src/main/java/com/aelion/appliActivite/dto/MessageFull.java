@@ -2,6 +2,8 @@ package com.aelion.appliActivite.dto;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.PastOrPresent;
+
 
 public class MessageFull {
 
@@ -9,6 +11,7 @@ public class MessageFull {
 
 	private String body;
 
+	@PastOrPresent
 	private LocalDateTime sendTime;
 
 	private String status;

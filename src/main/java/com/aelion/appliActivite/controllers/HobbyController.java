@@ -3,6 +3,8 @@ package com.aelion.appliActivite.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -63,7 +65,7 @@ public class HobbyController {
 	}
 	
 	@PostMapping
-	public HobbyFull save(@RequestBody HobbyFull hf) {
+	public HobbyFull save(@Valid @RequestBody HobbyFull hf) {
 		
 		Hobby h = mapper.map(hf,Hobby.class);
 		

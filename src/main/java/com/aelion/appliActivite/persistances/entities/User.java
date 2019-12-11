@@ -11,9 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -58,7 +56,7 @@ public class User implements Serializable{
 	private String photo;
 	
 	@Column(name = "role", nullable= false)
-	private String role;
+	private List<String> role;
 
 	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
@@ -195,6 +193,14 @@ public class User implements Serializable{
 	}
 
 	
+
+	public List<String> getRole() {
+		return role;
+	}
+
+	public void setRole(List<String> role) {
+		this.role = role;
+	}
 
 	/******************************************
 	************* METHODS *******************

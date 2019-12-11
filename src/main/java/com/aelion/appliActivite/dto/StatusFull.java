@@ -2,11 +2,14 @@ package com.aelion.appliActivite.dto;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.PastOrPresent;
+
 
 public class StatusFull {
 
 	private Long id;
 
+	@PastOrPresent
 	private LocalDateTime date;
 
 	private String reasonWhy;
