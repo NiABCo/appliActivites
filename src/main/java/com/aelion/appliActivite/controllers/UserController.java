@@ -52,7 +52,7 @@ public class UserController {
 	public User saveUser(@Valid @RequestBody UserPost userP) {
 		User user = mapper.map(userP, User.class);
 		System.out.println("User : "+user);
-		return userService.save(user);
+		return userService.saveUser(user);
 	}
 	
 }

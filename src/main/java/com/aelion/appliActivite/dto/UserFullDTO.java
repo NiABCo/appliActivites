@@ -3,11 +3,6 @@ package com.aelion.appliActivite.dto;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-
 import com.aelion.appliActivite.persistances.entities.Hobby;
 import com.aelion.appliActivite.persistances.entities.Message;
 

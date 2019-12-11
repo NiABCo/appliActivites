@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable{
@@ -42,7 +43,7 @@ public class User implements Serializable{
 	@JoinColumn(name = "id_hobbie", nullable = false)
 	private List<Hobby> hobbies;
 
-	@Column(name="email", nullable = false)
+	@Column(name="email", nullable = false, unique = true)
 	private String email;
 	
 	
