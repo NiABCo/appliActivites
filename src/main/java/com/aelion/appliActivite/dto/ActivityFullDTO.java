@@ -3,6 +3,9 @@ package com.aelion.appliActivite.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
 
 import com.aelion.appliActivite.persistances.entities.ActivityHasUser;
 import com.aelion.appliActivite.persistances.entities.Message;
@@ -13,18 +16,24 @@ public class ActivityFullDTO {
 	
 	private String description;
 	
+	@PastOrPresent
 	private LocalDate creationDate;
 	
+	@FutureOrPresent
 	private LocalDate beginningDate;
 	
+	@FutureOrPresent
 	private LocalDate endingDate;
 	
 	private String place;
 	
+	@Positive
 	private Double price;
 
+	
 	private boolean isAgeRestricted;
 	
+	@Positive
 	private int maxNumber;
 	
 	private String status;

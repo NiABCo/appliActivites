@@ -23,6 +23,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		com.aelion.appliActivite.persistances.entities.User u = userService.findByMail(username);
 
 		if (u != null) {
+			
 			return new User(u.getEmail(), u.getPassword(), new ArrayList<>());
 		} else {
 			throw new UsernameNotFoundException("User not found with username: " + username);

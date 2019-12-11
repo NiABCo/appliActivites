@@ -41,7 +41,7 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		newUser.setNickname("Benji49610");
 		newUser.setPassword("$2y$10$M468XrOJwPcLcDE96xbUZuRZ3NBGKrnevYs81BnLNVOrUR21aWGKS");
 		newUser.setEmail("ben49.pinon@gmail.com");
-		newUser.setRole(role);
+		
 		this.userService.save(newUser);
 	}
 

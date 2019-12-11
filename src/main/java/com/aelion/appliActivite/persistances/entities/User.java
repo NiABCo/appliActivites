@@ -21,21 +21,7 @@ public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	
-	@Transient
-	private String[] roles = {
-			"user","usermodo", "usermodoadmin"
-	};
-	
-	
-	
-	public String[] getRoles() {
-		return roles;
-	}
 
-	public void setRoles(String[] roles) {
-		this.roles = roles;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,6 +57,9 @@ public class User implements Serializable{
 	
 	@Column(name = "photo", nullable = true)
 	private String photo;
+	
+	@Column(name = "role", nullable= false)
+	private List<String> role;
 
 	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
@@ -80,8 +69,7 @@ public class User implements Serializable{
 	@JoinColumn(name = "id_receiver", nullable = false)
 	private List<Message> receivedMsg;
 	
-	@Column(name="role", nullable = false)
-	private String role;
+	
 
 
 	/****************************************
@@ -89,7 +77,6 @@ public class User implements Serializable{
 	***************************************/
 	
 	public User() {
-		
 	}
 	
 	public User(Long id, String lastname, String firstName, LocalDate birthDate, String nickname, List<Hobby> hobbies,
@@ -207,15 +194,6 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
-	//Setter and Getter for the role, user by default
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = this.getRoles()[0];
-	}
 
 	/******************************************
 	************* METHODS *******************
@@ -320,25 +298,7 @@ public class User implements Serializable{
 				+ ", receivedMsg=" + receivedMsg + "]";
 	}
 	
-	
-	/*
-	public enum Role {  
-		  
-	    ADMIN("Admin"), USER("User"), MODO("Moderateur");  
-	      
-	     private String abreviation ;  
-	      
-	     private Role(String abreviation) {  
-	         this.abreviation = abreviation ;  
-	    }  
-	      
-	     public String getRole() {  
-	         return  this.abreviation ;  
-	    }  
-	}
-	
-	*/
-	
+
 
 }
 

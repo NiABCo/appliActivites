@@ -2,18 +2,24 @@ package com.aelion.appliActivite.dto;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Positive;
+
 public class ActivityLightDTO {
 	
 	private String label;
 	
 	private String description;
 	
+	@FutureOrPresent
 	private LocalDate beginningDate;
 	
+	@FutureOrPresent
 	private LocalDate endingDate;
 	
 	private String place;
 	
+	@Positive
 	private Double price;
 	
 	private boolean isAgeRestricted;
