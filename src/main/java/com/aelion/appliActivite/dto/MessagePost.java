@@ -2,12 +2,15 @@ package com.aelion.appliActivite.dto;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.PastOrPresent;
+
 public class MessagePost {
 
 	private String title;
 
 	private String body;
 
+	@PastOrPresent
 	private LocalDateTime sendTime;
 	
 	private Long idSender;
