@@ -3,11 +3,6 @@ package com.aelion.appliActivite.services.impl;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import org.springframework.security.authentication.jaas.AuthorityGranter;
-
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
