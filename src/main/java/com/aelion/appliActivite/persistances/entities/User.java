@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
 
 @Entity
 @Table(name = "users")
@@ -57,9 +57,6 @@ public class User implements Serializable{
 	
 	@Column(name = "photo", nullable = true)
 	private String photo;
-	
-	@Column(name = "role", nullable= false)
-	private List<String> role;
 
 	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "id_sender", nullable = false)
@@ -193,7 +190,6 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	/******************************************
 	************* METHODS *******************

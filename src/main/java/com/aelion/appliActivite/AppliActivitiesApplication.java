@@ -33,7 +33,7 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		User newUser = new User();
 		
 		LocalDate birthday = LocalDate.now();
-		String role = "role";
+		
 		newUser.setLastname("PINON");
 		newUser.setFirstname("Benjamin");
 		newUser.setBirthDate(birthday);

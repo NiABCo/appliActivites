@@ -48,8 +48,8 @@ public class UserController {
 	
 	
 	@PostMapping()
-	public User saveUser(@Valid @RequestBody User user) {
-	
+	public User saveUser(@Valid @RequestBody UserFullDTO userF) {
+		User user = mapper.map(userF, User.class);
 		return userService.save(user);
 	}
 	
