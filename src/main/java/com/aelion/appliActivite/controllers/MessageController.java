@@ -28,13 +28,13 @@ import com.aelion.appliActivite.services.IMessageService;
 @RestController
 @RequestMapping(path = "/message")
 public class MessageController {
-	
+
 	@Autowired
 	IMessageService svc;
-	
+
 	@Autowired
 	ModelMapper mapper;
-	
+
 	@Autowired
 	IAuthChecker authChker;
 
@@ -44,45 +44,45 @@ public class MessageController {
 				.map(msgL -> mapper.map(msgL, MessageLight.class))
 				.collect(Collectors.toList());
 	}
-	
+
 	@GetMapping(path = "/{id}")
 	public MessageFull findOne(@PathVariable Long id) {
 		MessageFull msgF = mapper.map(svc.findOne(id), MessageFull.class);
 		return msgF;
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<String> save (@Valid @RequestBody MessagePost msg) throws AppActiArgumentNotValidException{
-		if (
-				(msg.getReceiverEmail() == null && msg.getActivityId() == null) ||
-				(msg.getReceiverEmail().isBlank())
-				
-				) {
+		System.out.println(msg);
+		if (msg.getReceiverEmail()==null  && msg.getActivityId() == null) {
 			ResponseEntity.badRequest();
 			throw new AppActiArgumentNotValidException("Message must have a receiver");
 		}
-		
-		if (!msg.getReceiverEmail().isBlank() && msg.getActivityId()!=null){
+
+		if (msg.getReceiverEmail()!=null && msg.getActivityId()!=null){
 			ResponseEntity.badRequest();
 			throw new AppActiArgumentNotValidException("Message can't be sent to user AND activity");
 		}
-		
+
 		msg.setSendTime(LocalDateTime.now());
 		msg.setStatus("send");
 		authChker.getCurrentUser();
-		if (msg.getReceiverEmail()!=null && !msg.getReceiverEmail().isBlank()) {
+		if (msg.getReceiverEmail()!=null) {
 			svc.sendMessageToUser(mapper.map(msg, Message.class),authChker.getCurrentUser().getId(), msg.getReceiverEmail());
 			return ResponseEntity.ok("Message has been sent");
 		}
-		svc.sendMessageToActivity(mapper.map(msg, Message.class),authChker.getCurrentUser().getId(), msg.getActivityId());
-		return ResponseEntity.ok("Message has been sent");
-		
+		if (msg.getActivityId()!=null) {
+			svc.sendMessageToActivity(mapper.map(msg, Message.class),authChker.getCurrentUser().getId(), msg.getActivityId());
+			return ResponseEntity.ok("Message has been sent");
+		}
+		throw new AppActiArgumentNotValidException("I quite don't know what happened !");
+
 	}
-	
-	
+
+
 	@DeleteMapping("/{id}")
 	public boolean deleteById (@PathVariable(name = "id") Long id) {
 		return  svc.deleteById(id);
 	}
-	
+
 }

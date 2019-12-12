@@ -55,6 +55,7 @@ public class MessageService extends AbstractService<Message, Long> implements IM
 		User sender = usrSvc.findOne(idSender);
 		Activity receiver = actSvc.findOne(id);
 		
+		
 		List<Message> messageSendList = sender.getSendMsg();
 		messageSendList.add(message);
 		sender.setSendMsg(messageSendList);
