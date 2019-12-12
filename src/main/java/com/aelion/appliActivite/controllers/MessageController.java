@@ -67,12 +67,14 @@ public class MessageController {
 		msg.setSendTime(LocalDateTime.now());
 		msg.setStatus("send");
 		authChker.getCurrentUser();
+		Message m =mapper.map(msg, Message.class);
+		m.setId(null);
 		if (msg.getReceiverEmail()!=null) {
-			svc.sendMessageToUser(mapper.map(msg, Message.class),authChker.getCurrentUser().getId(), msg.getReceiverEmail());
+			svc.sendMessageToUser(m,authChker.getCurrentUser().getId(), msg.getReceiverEmail());
 			return ResponseEntity.ok("Message has been sent");
 		}
 		if (msg.getActivityId()!=null) {
-			svc.sendMessageToActivity(mapper.map(msg, Message.class),authChker.getCurrentUser().getId(), msg.getActivityId());
+			svc.sendMessageToActivity(m,authChker.getCurrentUser().getId(), msg.getActivityId());
 			return ResponseEntity.ok("Message has been sent");
 		}
 		throw new AppActiArgumentNotValidException("I quite don't know what happened !");

@@ -3,11 +3,15 @@ package com.aelion.appliActivite.persistances.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +36,14 @@ public class Message implements Serializable{
 
 	@Column(name = "status", nullable = true)
 	private String status;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_activity_msg", referencedColumnName = "id")
+	private Activity receiverAct;
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+	@JoinColumn(name = "id_receiver",  referencedColumnName = "id")
+	private User receiverUsr;
 
 	
 	
@@ -94,6 +106,24 @@ public class Message implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	
+
+	public Activity getReceiverAct() {
+		return receiverAct;
+	}
+
+	public void setReceiverAct(Activity receiverAct) {
+		this.receiverAct = receiverAct;
+	}
+
+	public User getReceiverUsr() {
+		return receiverUsr;
+	}
+
+	public void setReceiverUsr(User receiverUsr) {
+		this.receiverUsr = receiverUsr;
 	}
 
 	/******************************************
