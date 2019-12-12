@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -64,6 +65,11 @@ public class Activity implements Serializable {
 	@JoinColumn (name = "id_act", nullable = false)
 	private Set<ActivityHasUser> actHasUser;
 	
+	
+	@ManyToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "id_creator")
+	private User creator;
+	
 
 	
 	/****************************************
@@ -72,7 +78,7 @@ public class Activity implements Serializable {
 	
 	
 	@SuppressWarnings("unused")
-	private Activity() {
+	public Activity() {
 		
 	};
 	
@@ -113,14 +119,6 @@ public class Activity implements Serializable {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	public String getDescirption() {
-		return description;
-	}
-
-	public void setDescirption(String descirption) {
-		this.description = descirption;
 	}
 
 	public LocalDate getCreationDate() {
@@ -213,6 +211,16 @@ public class Activity implements Serializable {
 
 
 
+	public User getCreator() {
+		return creator;
+	}
+
+
+	public void setCreator(User creator) {
+		this.creator = creator;
+	}
+
+
 	/******************************************
 	************* METHODS *******************
 	******************************************/
@@ -246,7 +254,9 @@ public class Activity implements Serializable {
 		return "Activity [id=" + id + ", label=" + label + ", description=" + description + ", creationDate="
 				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
 				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
-				+ status + ", actHasUser=" + actHasUser + "]";
+				+ status + ", actHasUser=" + actHasUser + ",  creator="
+				+ creator + "]";
+
 	}
 
 
