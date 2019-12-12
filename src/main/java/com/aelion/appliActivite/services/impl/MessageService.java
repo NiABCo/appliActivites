@@ -1,7 +1,5 @@
 package com.aelion.appliActivite.services.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -35,36 +33,25 @@ public class MessageService extends AbstractService<Message, Long> implements IM
 	}
 
 	@Override
-	public void sendMessageToUser(Message message, Long idSender, String email) {
+	public void sendMessageToUser(Message message, Long idSender, String email) {		
+		User receiver = usrSvc.findByMail(email);		
+		message.setReceiverUsr(receiver);
+		
 		User sender = usrSvc.findOne(idSender);
-		User receiver = usrSvc.findByMail(email);
+		sender.getSendMsg().add(message);
 		
-		List<Message> messageSendList = sender.getSendMsg();
-		messageSendList.add(message);
-		sender.setSendMsg(messageSendList);
-		
-		List<Message> messageReceivedList = receiver.getReceivedMsg();
-		messageReceivedList.add(message);
-		receiver.setReceivedMsg(messageReceivedList);
-		
-		repo.save(message);
+		usrSvc.save(sender);
 	}
 	
 	@Override
-	public void sendMessageToActivity(Message message, Long idSender, Long id) {
+	public void sendMessageToActivity(Message message, Long idSender, Long id) {		
+		Activity receiver = actSvc.findOne(id);		
+		message.setReceiverAct(receiver);
+		
 		User sender = usrSvc.findOne(idSender);
-		Activity receiver = actSvc.findOne(id);
+		sender.getSendMsg().add(message);
 		
-		
-		List<Message> messageSendList = sender.getSendMsg();
-		messageSendList.add(message);
-		sender.setSendMsg(messageSendList);
-		
-		List<Message> messageReceivedList = receiver.getActivityMessage();
-		messageReceivedList.add(message);
-		receiver.setActivityMessage(messageReceivedList);
-		
-		repo.save(message);
+		usrSvc.save(sender);
 	}
 
 }

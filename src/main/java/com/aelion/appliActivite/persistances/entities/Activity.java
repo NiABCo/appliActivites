@@ -2,7 +2,7 @@ package com.aelion.appliActivite.persistances.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -62,11 +62,7 @@ public class Activity implements Serializable {
 
 	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn (name = "id_act", nullable = false)
-	private List<ActivityHasUser> actHasUser;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "id_activity_msg")
-	private List<Message> activityMessage;
+	private Set<ActivityHasUser> actHasUser;
 	
 
 	
@@ -202,24 +198,19 @@ public class Activity implements Serializable {
 	}
 
 
-	public List<ActivityHasUser> getActHasUser() {
+	
+
+	public Set<ActivityHasUser> getActHasUser() {
 		return actHasUser;
 	}
 
 
-	public void setActHasUser(List<ActivityHasUser> actHasUser) {
+	public void setActHasUser(Set<ActivityHasUser> actHasUser) {
 		this.actHasUser = actHasUser;
 	}
 
 
-	public List<Message> getActivityMessage() {
-		return activityMessage;
-	}
 
-
-	public void setActivityMessage(List<Message> activityMessage) {
-		this.activityMessage = activityMessage;
-	}
 
 
 	/******************************************
@@ -255,7 +246,7 @@ public class Activity implements Serializable {
 		return "Activity [id=" + id + ", label=" + label + ", description=" + description + ", creationDate="
 				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
 				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
-				+ status + ", actHasUser=" + actHasUser + ", activityMessage=" + activityMessage + "]";
+				+ status + ", actHasUser=" + actHasUser + "]";
 	}
 
 
