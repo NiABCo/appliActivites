@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -68,6 +69,11 @@ public class Activity implements Serializable {
 	@JoinColumn(name = "id_activity_msg")
 	private List<Message> activityMessage;
 	
+	
+	@ManyToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "id_creator")
+	private User creator;
+	
 
 	
 	/****************************************
@@ -76,7 +82,7 @@ public class Activity implements Serializable {
 	
 	
 	@SuppressWarnings("unused")
-	private Activity() {
+	public Activity() {
 		
 	};
 	
@@ -117,14 +123,6 @@ public class Activity implements Serializable {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	public String getDescirption() {
-		return description;
-	}
-
-	public void setDescirption(String descirption) {
-		this.description = descirption;
 	}
 
 	public LocalDate getCreationDate() {
@@ -222,18 +220,22 @@ public class Activity implements Serializable {
 	}
 
 
+	public User getCreator() {
+		return creator;
+	}
+
+
+	public void setCreator(User creator) {
+		this.creator = creator;
+	}
+
+
 	/******************************************
 	************* METHODS *******************
 	******************************************/
 	
 
-	@Override
-	public String toString() {
-		return "Activity [id=" + id + ", label=" + label + ", descirption=" + description + ", creationDate="
-				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
-				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
-				+ status + "]";
-	}
+	
 
 
 	@Override
@@ -253,6 +255,16 @@ public class Activity implements Serializable {
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Activity [id=" + id + ", label=" + label + ", description=" + description + ", creationDate="
+				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
+				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
+				+ status + ", actHasUser=" + actHasUser + ", activityMessage=" + activityMessage + ", creator="
+				+ creator + "]";
 	}
 
 
