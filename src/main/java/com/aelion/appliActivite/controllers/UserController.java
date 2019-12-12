@@ -24,7 +24,7 @@ import com.aelion.appliActivite.services.IUserService;
 
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/admin/user")
 public class UserController {
 
 	@Autowired 

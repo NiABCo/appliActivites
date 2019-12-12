@@ -41,8 +41,25 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		newUser.setNickname("Benji49610");
 		newUser.setPassword("$2y$10$M468XrOJwPcLcDE96xbUZuRZ3NBGKrnevYs81BnLNVOrUR21aWGKS");
 		newUser.setEmail("ben49.pinon@gmail.com");
+		newUser.setRole("ADMIN");
 		
-		this.userService.save(newUser);
+		//this.userService.save(newUser);
+		
+		
+		User newUser1 = new User();
+		
+		LocalDate birthday1 = LocalDate.now();
+		
+		newUser1.setLastname("LEponge");
+		newUser1.setFirstname("Bob");
+		newUser1.setBirthDate(birthday1);
+		newUser1.setDescription("aucune");
+		newUser1.setNickname("Boby");
+		newUser1.setPassword("$2y$10$M468XrOJwPcLcDE96xbUZuRZ3NBGKrnevYs81BnLNVOrUR21aWGKS");
+		newUser1.setEmail("bob@gmail.com");
+		newUser1.setRole("USER");
+		
+		this.userService.save(newUser1);
 	}
 
 }
