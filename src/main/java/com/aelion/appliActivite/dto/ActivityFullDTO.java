@@ -9,6 +9,7 @@ import javax.validation.constraints.Positive;
 
 import com.aelion.appliActivite.persistances.entities.ActivityHasUser;
 import com.aelion.appliActivite.persistances.entities.Message;
+import com.aelion.appliActivite.persistances.entities.User;
 
 public class ActivityFullDTO {
 
@@ -41,6 +42,8 @@ public class ActivityFullDTO {
 	private List<ActivityHasUser> actHasUser;
 	
 	private List<Message> activityMessage;
+	
+	private UserLightDTO creator;
 	
 	public ActivityFullDTO() {
 		
@@ -162,6 +165,18 @@ public class ActivityFullDTO {
 
 	public void setActivityMessage(List<Message> activityMessage) {
 		this.activityMessage = activityMessage;
+	}
+
+
+
+	public UserLightDTO getCreator() {
+		return creator;
+	}
+
+
+
+	public void setCreator(UserLightDTO creator) {
+		this.creator = creator;
 	}
 
 }

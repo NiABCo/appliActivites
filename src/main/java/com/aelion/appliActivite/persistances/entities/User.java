@@ -3,6 +3,8 @@ package com.aelion.appliActivite.persistances.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +22,8 @@ import javax.persistence.Table;
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +50,7 @@ public class User implements Serializable{
 	private String email;
 	
 	
-	@Column(name="description", nullable = false)
+	@Column(name="description", nullable = true)
 	private String description;
 	
 	@Column(name="password", nullable = false)
@@ -56,16 +60,13 @@ public class User implements Serializable{
 	private String photo;
 
 	@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "id_sender", nullable = false)
-	private List<Message> sendMsg;
+	@JoinColumn(name = "id_sender", nullable = true)
+	private Set<Message> sendMsg;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "id_receiver")
-	private List<Message> receivedMsg;
-	
-	@Column(name = "Role")
+
+	@Column(name = "role", nullable = false)
+
 	private String role;
-	
 	
 	
 
@@ -159,23 +160,17 @@ public class User implements Serializable{
 		this.lastname = lastname;
 	}
 
-	public List<Message> getSendMsg() {
+	
+	
+	
+	public Set<Message> getSendMsg() {
 		return sendMsg;
 	}
 
-	public void setSendMsg(List<Message> sendMsg) {
+	public void setSendMsg(Set<Message> sendMsg) {
 		this.sendMsg = sendMsg;
 	}
 
-	public List<Message> getReceivedMsg() {
-		return receivedMsg;
-	}
-
-	public void setReceivedMsg(List<Message> receivedMsg) {
-		this.receivedMsg = receivedMsg;
-	}
-	
-	
 	public String getFirstname() {
 		return firstname;
 	}
@@ -190,6 +185,14 @@ public class User implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	public String getRole() {
+		return this.role;
 	}
 
 	/******************************************
@@ -210,7 +213,6 @@ public class User implements Serializable{
 		result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
-		result = prime * result + ((receivedMsg == null) ? 0 : receivedMsg.hashCode());
 		result = prime * result + ((sendMsg == null) ? 0 : sendMsg.hashCode());
 		return result;
 	}
@@ -274,11 +276,6 @@ public class User implements Serializable{
 				return false;
 		} else if (!photo.equals(other.photo))
 			return false;
-		if (receivedMsg == null) {
-			if (other.receivedMsg != null)
-				return false;
-		} else if (!receivedMsg.equals(other.receivedMsg))
-			return false;
 		if (sendMsg == null) {
 			if (other.sendMsg != null)
 				return false;
@@ -292,11 +289,10 @@ public class User implements Serializable{
 		return "User [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", birthDate=" + birthDate
 				+ ", nickname=" + nickname + ", hobbies=" + hobbies + ", email=" + email + ", description="
 				+ description + ", password=" + password + ", photo=" + photo + ", sendMsg=" + sendMsg
-				+ ", receivedMsg=" + receivedMsg + "]";
+				+ "]";
 	}
 	
-	
-	
+
 
 }
 

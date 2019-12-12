@@ -79,10 +79,11 @@ public class MessagePost {
 		this.activityId = activityId;
 	}
 
+
 	@Override
 	public String toString() {
-		return "MessagePost [title=" + title + ", body=" + body + ", sendTime=" + sendTime 
-				+ "]";
+		return "MessagePost [title=" + title + ", body=" + body + ", sendTime=" + sendTime + ", status=" + status
+				+ ", receiverEmail=" + receiverEmail + ", activityId=" + activityId + "]";
 	}
 
 	@Override

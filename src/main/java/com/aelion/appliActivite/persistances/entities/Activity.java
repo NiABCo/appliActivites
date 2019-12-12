@@ -2,7 +2,7 @@ package com.aelion.appliActivite.persistances.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -62,11 +63,12 @@ public class Activity implements Serializable {
 
 	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn (name = "id_act", nullable = false)
-	private List<ActivityHasUser> actHasUser;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "id_activity_msg")
-	private List<Message> activityMessage;
+	private Set<ActivityHasUser> actHasUser;
+	
+	
+	@ManyToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "id_creator")
+	private User creator;
 	
 
 	
@@ -76,7 +78,7 @@ public class Activity implements Serializable {
 	
 	
 	@SuppressWarnings("unused")
-	private Activity() {
+	public Activity() {
 		
 	};
 	
@@ -117,14 +119,6 @@ public class Activity implements Serializable {
 
 	public void setLabel(String label) {
 		this.label = label;
-	}
-
-	public String getDescirption() {
-		return description;
-	}
-
-	public void setDescirption(String descirption) {
-		this.description = descirption;
 	}
 
 	public LocalDate getCreationDate() {
@@ -202,23 +196,28 @@ public class Activity implements Serializable {
 	}
 
 
-	public List<ActivityHasUser> getActHasUser() {
+	
+
+	public Set<ActivityHasUser> getActHasUser() {
 		return actHasUser;
 	}
 
 
-	public void setActHasUser(List<ActivityHasUser> actHasUser) {
+	public void setActHasUser(Set<ActivityHasUser> actHasUser) {
 		this.actHasUser = actHasUser;
 	}
 
 
-	public List<Message> getActivityMessage() {
-		return activityMessage;
+
+
+
+	public User getCreator() {
+		return creator;
 	}
 
 
-	public void setActivityMessage(List<Message> activityMessage) {
-		this.activityMessage = activityMessage;
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
 
@@ -227,13 +226,7 @@ public class Activity implements Serializable {
 	******************************************/
 	
 
-	@Override
-	public String toString() {
-		return "Activity [id=" + id + ", label=" + label + ", descirption=" + description + ", creationDate="
-				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
-				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
-				+ status + "]";
-	}
+	
 
 
 	@Override
@@ -253,6 +246,17 @@ public class Activity implements Serializable {
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Activity [id=" + id + ", label=" + label + ", description=" + description + ", creationDate="
+				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
+				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
+				+ status + ", actHasUser=" + actHasUser + ",  creator="
+				+ creator + "]";
+
 	}
 
 

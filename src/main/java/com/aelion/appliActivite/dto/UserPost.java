@@ -28,7 +28,7 @@ public class UserPost {
 	
 	private List<Hobby> hobbies;
 
-	@NotBlank
+
 	private String description;
 	
 	@NotBlank
