@@ -172,14 +172,6 @@ public class User implements Serializable{
 		this.sendMsg = sendMsg;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public String getFirstname() {
 		return firstname;
 	}
