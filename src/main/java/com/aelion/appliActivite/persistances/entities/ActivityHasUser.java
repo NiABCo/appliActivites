@@ -21,8 +21,8 @@ public class ActivityHasUser {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_user", referencedColumnName = "id", insertable = false, updatable = false)
+	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_user", referencedColumnName = "id", insertable = true, updatable = false)
 	private User user;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
