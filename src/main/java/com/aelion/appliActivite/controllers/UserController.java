@@ -24,7 +24,7 @@ import com.aelion.appliActivite.services.IUserService;
 
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/admin/user")
 public class UserController {
 
 	@Autowired 
@@ -38,12 +38,12 @@ public class UserController {
 		return userService.findAll().stream().map(user -> mapper.map(user, UserLightDTO.class)).collect(Collectors.toList());
 	}
 	
-	@GetMapping("/member/{id}")
+	@GetMapping("/{id}")
 	public UserFullDTO getUserById(@PathVariable(name = "id") Long id) {
 		return mapper.map(userService.findOne(id), UserFullDTO.class) ;
 	}
 	
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/{id}")
 	public boolean deleteUserById(@PathVariable(name = "id") Long id) {
 		return  userService.deleteById(id);
 	}

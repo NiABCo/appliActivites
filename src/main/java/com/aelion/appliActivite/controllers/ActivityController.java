@@ -18,7 +18,7 @@ import com.aelion.appliActivite.persistances.entities.Activity;
 import com.aelion.appliActivite.services.IActivityService;
 
 @RestController
-@RequestMapping(path = "/activity")
+@RequestMapping(path = "/member/activity")
 public class ActivityController {
 
 	@Autowired

@@ -48,7 +48,6 @@ public class MessageController {
 	@GetMapping(path = "/{id}")
 	public MessageFull findOne(@PathVariable Long id) {
 		MessageFull msgF = mapper.map(svc.findOne(id), MessageFull.class);
-		//TODO add sender && receiver
 		return msgF;
 	}
 

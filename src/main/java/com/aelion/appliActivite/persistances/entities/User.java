@@ -20,6 +20,8 @@ import javax.persistence.Table;
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +49,7 @@ public class User implements Serializable{
 	private String email;
 	
 	
-	@Column(name="description", nullable = false)
+	@Column(name="description", nullable = true)
 	private String description;
 	
 	@Column(name="password", nullable = false)
@@ -64,9 +66,10 @@ public class User implements Serializable{
 	@JoinColumn(name = "id_receiver")
 	private List<Message> receivedMsg;
 	
-	@Column(name = "role")
+
+	@Column(name = "role", nullable = false)
+
 	private String role;
-	
 	
 	
 
@@ -192,6 +195,14 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	public String getRole() {
+		return this.role;
+	}
 
 	/******************************************
 	************* METHODS *******************
@@ -296,8 +307,7 @@ public class User implements Serializable{
 				+ ", receivedMsg=" + receivedMsg + "]";
 	}
 	
-	
-	
+
 
 }
 

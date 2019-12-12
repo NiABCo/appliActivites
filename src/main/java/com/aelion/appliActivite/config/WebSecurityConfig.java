@@ -14,20 +14,29 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Service;
+
+import com.aelion.appliActivite.services.impl.JwtUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
 	@Autowired
-	private UserDetailsService jwtUserDetailsService;
+	private JwtUserDetailsService jwtUserDetailsService;
 
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
+
+	@Bean
+	public JwtUserDetailsService userDetailsService() {
+		return new JwtUserDetailsService();
+	};
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -47,11 +56,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		
+		  httpSecurity.csrf().disable()
+		  .authorizeRequests()
+		  
+		  .antMatchers("/admin/**").hasAnyRole("ADMIN")
+		  .antMatchers("/member/**").hasAnyRole("USER", "ADMIN")
+		  .antMatchers("/public/**").permitAll().anyRequest().authenticated()
+		  .and().exceptionHandling().authenticationEntryPoint(
+		  jwtAuthenticationEntryPoint).and()
+		  .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		  
+		  httpSecurity.addFilterBefore(jwtRequestFilter,
+		  UsernamePasswordAuthenticationFilter.class);
+		 
+		  /*
+		httpSecurity.authorizeRequests().anyRequest().hasAnyRole("ADMIN", "USER").and().formLogin().and().logout()
+				.permitAll().logoutSuccessUrl("/login").and().csrf().disable();
+				
+		httpSecurity.addFilterBefore(jwtRequestFilter,
+			 UsernamePasswordAuthenticationFilter.class);
+			 */
 
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/public/**").permitAll().anyRequest()
-				.authenticated().and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }
