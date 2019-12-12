@@ -3,6 +3,7 @@ package com.aelion.appliActivite.controllers;
 
 import javax.validation.Valid;
 
+import org.hibernate.annotations.UpdateTimestamp;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,7 +65,7 @@ public class ActivityController {
 
 	@DeleteMapping("/{id}")
 	public boolean deleteActivityById(@PathVariable(name = "id") Long id) {
-		
+		//Vérification de l'user Connecté, si son ID est la même que celui qui a crée l'activity, il pourra la supprimer
 		if(this.authChecker.getCurrentUser().getId().equals(this.activityService.findOne(id).getCreator().getId())) {
 			return this.activityService.deleteById(id);
 			
@@ -72,6 +74,22 @@ public class ActivityController {
 		}
 	
 		
+	}
+	
+	@PutMapping("/{id}/addusers/{iduser}")
+	public boolean addUserToActivity(@PathVariable(name="id")Long id,@PathVariable(name="iduser")Long iduser) {
+		
+		return activityService.addUserToActivity(id, iduser);
+		
+		
+		
+	}
+	
+	
+	@PutMapping("/{id}/adduser")
+	public boolean addUserToActivity(@PathVariable(name="id")Long id) {
+
+		return activityService.addUserToActivity(id, this.authChecker.getCurrentUser().getId());
 	}
 
 

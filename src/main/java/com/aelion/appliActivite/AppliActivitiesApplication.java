@@ -1,6 +1,10 @@
  package com.aelion.appliActivite;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -8,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.aelion.appliActivite.persistances.entities.Activity;
+import com.aelion.appliActivite.persistances.entities.ActivityHasUser;
 import com.aelion.appliActivite.persistances.entities.User;
 import com.aelion.appliActivite.services.IActivityService;
 import com.aelion.appliActivite.services.IUserService;
@@ -30,6 +35,7 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		//createUser();
 		//createActivity();
+	
 		
 	}
 	
@@ -70,7 +76,8 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 	
 	public void createActivity(){
 		
-		User user = this.userService.findOne(1L);
+		User user1 = this.userService.findOne(1L);
+	
 		
 		Activity act = new Activity();
 		
@@ -78,7 +85,7 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		LocalDate endDate = LocalDate.now().plusDays(5);
 		
 		
-		act.setCreator(user);
+		act.setCreator(user1);
 		act.setLabel("Activité au hasard");
 		act.setAgeRestricted(false);
 		act.setCreationDate(createDate);
@@ -89,8 +96,12 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		act.setPlace("Toulouse City");
 		act.setPrice(00.00);
 
+		
+		
 		activityService.save(act);
 		
 	}
+	
+	
 
 }
