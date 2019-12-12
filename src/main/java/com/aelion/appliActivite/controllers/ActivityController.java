@@ -3,11 +3,8 @@ package com.aelion.appliActivite.controllers;
 
 import javax.validation.Valid;
 
-import org.hibernate.annotations.UpdateTimestamp;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +18,9 @@ import com.aelion.appliActivite.dto.ActivityFullDTO;
 import com.aelion.appliActivite.dto.UserFullDTO;
 import com.aelion.appliActivite.exceptions.NotAuthorizedException;
 import com.aelion.appliActivite.persistances.entities.Activity;
-import com.aelion.appliActivite.persistances.entities.User;
 import com.aelion.appliActivite.services.IActivityService;
 import com.aelion.appliActivite.services.IAuthChecker;
 import com.aelion.appliActivite.services.IUserService;
-import com.aelion.appliActivite.services.impl.AuthChecker;
 
 @RestController
 @RequestMapping(path = "/member/activity")

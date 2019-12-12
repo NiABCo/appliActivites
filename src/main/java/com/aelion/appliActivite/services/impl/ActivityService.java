@@ -1,10 +1,7 @@
 package com.aelion.appliActivite.services.impl;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;

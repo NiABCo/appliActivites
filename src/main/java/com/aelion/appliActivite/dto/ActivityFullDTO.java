@@ -9,7 +9,6 @@ import javax.validation.constraints.Positive;
 
 import com.aelion.appliActivite.persistances.entities.ActivityHasUser;
 import com.aelion.appliActivite.persistances.entities.Message;
-import com.aelion.appliActivite.persistances.entities.User;
 
 public class ActivityFullDTO {
 

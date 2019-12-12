@@ -1,10 +1,6 @@
  package com.aelion.appliActivite;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.aelion.appliActivite.persistances.entities.Activity;
-import com.aelion.appliActivite.persistances.entities.ActivityHasUser;
 import com.aelion.appliActivite.persistances.entities.User;
 import com.aelion.appliActivite.services.IActivityService;
 import com.aelion.appliActivite.services.IUserService;
