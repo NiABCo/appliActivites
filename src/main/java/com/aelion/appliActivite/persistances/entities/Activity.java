@@ -227,13 +227,7 @@ public class Activity implements Serializable {
 	******************************************/
 	
 
-	@Override
-	public String toString() {
-		return "Activity [id=" + id + ", label=" + label + ", descirption=" + description + ", creationDate="
-				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
-				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
-				+ status + "]";
-	}
+	
 
 
 	@Override
@@ -253,6 +247,15 @@ public class Activity implements Serializable {
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Activity [id=" + id + ", label=" + label + ", description=" + description + ", creationDate="
+				+ creationDate + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", place=" + place
+				+ ", price=" + price + ", isAgeRestricted=" + isAgeRestricted + ", maxNumber=" + maxNumber + ", status="
+				+ status + ", actHasUser=" + actHasUser + ", activityMessage=" + activityMessage + "]";
 	}
 
 
