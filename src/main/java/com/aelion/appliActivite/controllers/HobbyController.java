@@ -23,7 +23,12 @@ import com.aelion.appliActivite.persistances.entities.Hobby;
 
 import com.aelion.appliActivite.services.IHobbyService;
 
-
+/**
+ * Class handling the control of Hobbies
+ * 
+ * @author Aelion
+ *
+ */
 @RestController
 @RequestMapping(path = "/hobby")
 public class HobbyController {

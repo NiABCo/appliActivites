@@ -53,7 +53,6 @@ public class UserController {
 	/**
 	 * Return the user with this id "id"
 	 * 
-	 * @throws NotFoundException if user not found
 	 * @param id of the user to return
 	 * @return The DTO of the user with the given id
 	 */
@@ -65,7 +64,6 @@ public class UserController {
 	/**
 	 * Remove a User from the Database
 	 * 
-	 * @throws NotFoundException if user not found
 	 * @param id : id of the user to delete from the DB
 	 * @return true if successful, false if not.
 	 */

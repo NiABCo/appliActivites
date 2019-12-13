@@ -28,7 +28,12 @@ import com.aelion.appliActivite.services.IActivityService;
 
 
 
-
+/**
+ * Class handling the control all public request
+ * 
+ * @author Aelion
+ *
+ */
 @RestController
 @RequestMapping(path = "/public")
 public class PublicController {

@@ -25,6 +25,12 @@ import com.aelion.appliActivite.persistances.entities.Message;
 import com.aelion.appliActivite.services.IAuthChecker;
 import com.aelion.appliActivite.services.IMessageService;
 
+/**
+ * Class handling the control of Messages
+ * 
+ * @author Aelion
+ *
+ */
 @RestController
 @RequestMapping(path = "/message")
 public class MessageController {

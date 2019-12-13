@@ -25,7 +25,12 @@ import com.aelion.appliActivite.persistances.entities.Status;
 import com.aelion.appliActivite.services.IActivityService;
 import com.aelion.appliActivite.services.IStatusService;
 
-
+/**
+ * Class handling the control of Status
+ * 
+ * @author Aelion
+ *
+ */
 @RestController
 @RequestMapping(path = "/status")
 public class StatusController {

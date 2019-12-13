@@ -21,7 +21,12 @@ import com.aelion.appliActivite.persistances.entities.Activity;
 import com.aelion.appliActivite.services.IActivityService;
 import com.aelion.appliActivite.services.IAuthChecker;
 import com.aelion.appliActivite.services.IUserService;
-
+/**
+ * Class handling the control of Activities
+ * 
+ * @author Aelion
+ *
+ */
 @RestController
 @RequestMapping(path = "/member/activity")
 public class ActivityController {
