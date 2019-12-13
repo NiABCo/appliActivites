@@ -1,1 +1,11 @@
+com.aelion.appliActivite
+com.aelion.appliActivite.config
 com.aelion.appliActivite.controllers
+com.aelion.appliActivite.dto
+com.aelion.appliActivite.dto.jwt
+com.aelion.appliActivite.exceptions
+com.aelion.appliActivite.persistances.entities
+com.aelion.appliActivite.persistances.repositories
+com.aelion.appliActivite.services
+com.aelion.appliActivite.services.common
+com.aelion.appliActivite.services.impl

@@ -48,6 +48,10 @@ public class StatusController {
 		
 	}
 	
+	/**
+	 * Return the full list of Status (pretty useless)
+	 * @return a list of Status DTO 
+	 */
 	@RequestMapping (path = "/list",method = RequestMethod.GET)
 	public List<StatusLight> findAll(){
 		
@@ -58,13 +62,23 @@ public class StatusController {
 		
 	}
 	
+	/**
+	 * Return the detail of a status
+	 * @param id of the status to detail
+	 * @return the DTO of the status
+	 */
 	@GetMapping(path ="/{identifiant}")
 	public StatusFull findOne (@PathVariable(name= "identifiant") Long id) {
 		
 		return mapper.map(serviceStatus.findOne(id),StatusFull.class);
 		
 	}
-	
+	/**
+	 * Remove from the DB the Status with the given id
+	 * @param id of the status to delete
+	 * @return true - if delete successful<br>
+	 * false if not
+	 */
 	@DeleteMapping(path ="/{id}")
 	public Boolean deleteOne (@PathVariable Long id) {
 		
@@ -85,6 +99,12 @@ public class StatusController {
 //		return ResponseEntity.ok("Status Updated");
 //	}
 	
+	
+	/**
+	 * Allow to add a new user on an activity OR given an other status
+	 * @param statusPost - the new status to add
+	 * @return response 
+	 */
 	@PostMapping(path = "/newstatus")
 	public  ResponseEntity<String> addNewUsrToAct(@Valid @RequestBody StatusPost statusPost) {
 		

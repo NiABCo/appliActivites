@@ -45,24 +45,44 @@ public class ActivityController {
 	ModelMapper mapper;
 
 	
-	
+	/**
+	 * Return the DTO of the user who created this Activity
+	 * @param id of the activity
+	 * @return The DTO of the user who created this Activity
+	 */
 	public UserFullDTO getActivityCreator(Long id) {
 		
 		
 		return mapper.map(this.activityService.findOne(id).getCreator(), UserFullDTO.class);
 	}
 
+	/**
+	 * Return the full DTO of the Activity
+	 * @param id of the wanted activity
+	 * @return The full DTO of the Activity
+	 */
 	@GetMapping("/{id}")
 	public ActivityFullDTO getActivityById(@PathVariable(name = "id") Long id) {
 		
 		return mapper.map(this.activityService.findOne(id), ActivityFullDTO.class);
 	}
 
+	/**
+	 * This allow to save a new Activity in the DB
+	 * @param activity NOT a DTO ! Why ?
+	 * @return The Activity
+	 */
 	@PostMapping()
 	public Activity saveActivity(@Valid @RequestBody Activity activity) {
 		return this.activityService.save(activity);
 	}
 
+	/**
+	 * This allow to delete a chosen activity from the DB
+	 * @param id of the activity to delete
+	 * @return true - if the delete was successful<br>
+	 * false - if not
+	 */
 	@DeleteMapping("/{id}")
 	public boolean deleteActivityById(@PathVariable(name = "id") Long id) {
 		//Vérification de l'user Connecté, si son ID est la même que celui qui a crée l'activity, il pourra la supprimer
@@ -76,6 +96,13 @@ public class ActivityController {
 		
 	}
 	
+	/**
+	 * This allow to add an user as a participant in a given activity
+	 * @param id - is the id of the activity in which the user participate in
+	 * @param iduser - is the id of the user to add
+	 * @return true - if the add was successful<br>
+	 * false - if not
+	 */
 	@PutMapping("/{id}/addusers/{iduser}")
 	public boolean addUserToActivity(@PathVariable(name="id")Long id,@PathVariable(name="iduser")Long iduser) {
 		
@@ -85,7 +112,12 @@ public class ActivityController {
 		
 	}
 	
-	
+	/**
+	 * This allow to add the logged user as a participant in a given activity
+	 * @param id - is the id of the activity in which the user participate in
+	 * @return true - if the add was successful<br>
+	 * false - if not
+	 */
 	@PutMapping("/{id}/adduser")
 	public boolean addUserToActivity(@PathVariable(name="id")Long id) {
 
