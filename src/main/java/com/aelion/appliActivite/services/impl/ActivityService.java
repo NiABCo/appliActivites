@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.aelion.appliActivite.persistances.entities.Activity;
 import com.aelion.appliActivite.persistances.entities.ActivityHasUser;
 import com.aelion.appliActivite.persistances.entities.User;
+import com.aelion.appliActivite.persistances.repositories.IActivityHasUserRepository;
 import com.aelion.appliActivite.persistances.repositories.IActivityRepository;
 import com.aelion.appliActivite.services.IActivityService;
 import com.aelion.appliActivite.services.IUserService;
@@ -27,6 +28,9 @@ public class ActivityService extends AbstractService<Activity, Long> implements 
 	@Autowired
 	IUserService userService;
 	
+	@Autowired
+	IActivityHasUserRepository AHURepo;
+	
 	@Override
 	public JpaRepository<Activity, Long> getRepo() {
 		return activityRepo;
@@ -38,7 +42,7 @@ public class ActivityService extends AbstractService<Activity, Long> implements 
 		User user = this.userService.findOne(idUser);
 		
 		
-		if(activityToUpdate != null) {
+		if(activityToUpdate != null && AHURepo.findByActAndUsr(idUser, id) == null) {
 			
 			ActivityHasUser newActHasUser = new ActivityHasUser();
 			Set<ActivityHasUser> listActHasUser = new HashSet<ActivityHasUser>();

@@ -5,4 +5,6 @@ import com.aelion.appliActivite.services.common.IServiceActions;
 
 public interface IStatusService extends IServiceActions<Status, Long> {
 
+	void saveInAct(Status s, Long idUser, Long idActivity);
+
 }
