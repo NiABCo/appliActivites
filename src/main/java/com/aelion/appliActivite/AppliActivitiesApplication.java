@@ -1,6 +1,7 @@
  package com.aelion.appliActivite;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -77,14 +78,15 @@ public class AppliActivitiesApplication implements CommandLineRunner{
 		Activity act = new Activity();
 		
 		LocalDate createDate = LocalDate.now();
-		LocalDate endDate = LocalDate.now().plusDays(5);
+		LocalDateTime beginDate = LocalDateTime.now().plusDays(5);
+		LocalDateTime endDate = LocalDateTime.now().plusDays(5);
 		
 		
 		act.setCreator(user1);
 		act.setLabel("Activité au hasard");
 		act.setAgeRestricted(false);
 		act.setCreationDate(createDate);
-		act.setBeginningDate(createDate);
+		act.setBeginningDate(beginDate);
 		act.setDescription("aucune description");
 		act.setEndingDate(endDate);
 		act.setMaxNumber(10);

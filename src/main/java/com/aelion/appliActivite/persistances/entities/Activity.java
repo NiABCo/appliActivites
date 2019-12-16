@@ -2,6 +2,7 @@ package com.aelion.appliActivite.persistances.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,10 +41,10 @@ public class Activity implements Serializable {
 	private LocalDate creationDate;
 	
 	@Column(name="beginning_date", nullable=false)
-	private LocalDate beginningDate;
+	private LocalDateTime beginningDate;
 	
 	@Column(name="ending_date", nullable=false)
-	private LocalDate endingDate;
+	private LocalDateTime endingDate;
 	
 	@Column(name = "place", nullable=false)
 	private String place;
@@ -83,7 +84,7 @@ public class Activity implements Serializable {
 	};
 	
 	
-	public Activity(Long id, String label, String descirption, LocalDate creationDate, LocalDate beginningDate, LocalDate endingDate,
+	public Activity(Long id, String label, String descirption, LocalDate creationDate, LocalDateTime beginningDate, LocalDateTime endingDate,
 			String place, Double price, boolean isAgeRestricted, int maxNumber, String status) {
 		super();
 		this.id = id;
@@ -129,19 +130,19 @@ public class Activity implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	public LocalDate getBeginningDate() {
+	public LocalDateTime getBeginningDate() {
 		return beginningDate;
 	}
 
-	public void setBeginningDate(LocalDate beginningDate) {
+	public void setBeginningDate(LocalDateTime beginningDate) {
 		this.beginningDate = beginningDate;
 	}
 
-	public LocalDate getEndingDate() {
+	public LocalDateTime getEndingDate() {
 		return endingDate;
 	}
 
-	public void setEndingDate(LocalDate endingDate) {
+	public void setEndingDate(LocalDateTime endingDate) {
 		this.endingDate = endingDate;
 	}
 

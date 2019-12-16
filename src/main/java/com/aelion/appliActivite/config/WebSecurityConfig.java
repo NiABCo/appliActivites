@@ -60,7 +60,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		  
 		  .antMatchers("/admin/**").hasAnyRole("ADMIN")
 		  .antMatchers("/member/**").hasAnyRole("USER", "ADMIN")
-		  .antMatchers("/public/**").permitAll().anyRequest().authenticated()
+		  .antMatchers("/public/**").permitAll()
+//		  .antMatchers("/api-docs/**").permitAll()
+//		  .antMatchers("/v3/api-docs**").permitAll()
+//		  .antMatchers("/swagger-ui**").permitAll()
+//		  .antMatchers("/swagger-ui/**").permitAll()
+		  .anyRequest().authenticated()
 		  .and().exceptionHandling().authenticationEntryPoint(
 		  jwtAuthenticationEntryPoint).and()
 		  .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
