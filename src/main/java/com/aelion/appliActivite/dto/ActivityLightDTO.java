@@ -7,6 +7,8 @@ import javax.validation.constraints.Positive;
 
 public class ActivityLightDTO {
 	
+	private Long id;
+
 	private String label;
 	
 	private String description;
@@ -43,6 +45,14 @@ public class ActivityLightDTO {
 		this.maxNumber = maxNumber;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getLabel() {
 		return label;
 	}

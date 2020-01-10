@@ -3,6 +3,7 @@ package com.aelion.appliActivite.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -19,7 +20,6 @@ import com.aelion.appliActivite.services.impl.JwtUserDetailsService;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		  httpSecurity.csrf().disable()
 		  .authorizeRequests()
-		  
+		  .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()  //Peut être optionelle
 		  .antMatchers("/admin/**").hasAnyRole("ADMIN")
 		  .antMatchers("/member/**").hasAnyRole("USER", "ADMIN")
 		  .antMatchers("/public/**").permitAll().anyRequest().authenticated()

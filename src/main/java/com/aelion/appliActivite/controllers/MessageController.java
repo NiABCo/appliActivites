@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,8 @@ import com.aelion.appliActivite.persistances.entities.Message;
 import com.aelion.appliActivite.services.IAuthChecker;
 import com.aelion.appliActivite.services.IMessageService;
 
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/message")
 public class MessageController {

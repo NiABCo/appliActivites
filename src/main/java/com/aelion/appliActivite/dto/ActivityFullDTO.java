@@ -13,6 +13,8 @@ import com.aelion.appliActivite.persistances.entities.User;
 
 public class ActivityFullDTO {
 
+	private Long id;
+	
 	private String label;
 	
 	private String description;
@@ -55,6 +57,7 @@ public class ActivityFullDTO {
 			LocalDate endingDate, String place, Double price, boolean isAgeRestricted, int maxNumber, String status,
 			List<ActivityHasUser> actHasUser, List<Message> activityMessage) {
 		super();
+		this.id = id;
 		this.label = label;
 		this.description = description;
 		this.creationDate = creationDate;
@@ -70,7 +73,14 @@ public class ActivityFullDTO {
 	}
 
 
+	public Long getId() {
+		return this.id;
+	};
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getLabel() {
 		return label;
 	}

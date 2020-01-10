@@ -1,6 +1,9 @@
 package com.aelion.appliActivite.controllers;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -8,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aelion.appliActivite.dto.ActivityFullDTO;
+import com.aelion.appliActivite.dto.ActivityLightDTO;
 import com.aelion.appliActivite.dto.UserFullDTO;
 import com.aelion.appliActivite.exceptions.NotAuthorizedException;
 import com.aelion.appliActivite.persistances.entities.Activity;
@@ -27,8 +32,11 @@ import com.aelion.appliActivite.services.IAuthChecker;
 import com.aelion.appliActivite.services.IUserService;
 import com.aelion.appliActivite.services.impl.AuthChecker;
 
+
+
 @RestController
 @RequestMapping(path = "/member/activity")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ActivityController {
 
 	@Autowired
@@ -46,6 +54,8 @@ public class ActivityController {
 
 	
 	
+	
+	
 	public UserFullDTO getActivityCreator(Long id) {
 		
 		
@@ -54,7 +64,7 @@ public class ActivityController {
 
 	@GetMapping("/{id}")
 	public ActivityFullDTO getActivityById(@PathVariable(name = "id") Long id) {
-		
+		System.out.println(id);
 		return mapper.map(this.activityService.findOne(id), ActivityFullDTO.class);
 	}
 
